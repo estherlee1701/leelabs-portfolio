@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.leelabs.agency/sitemap.xml
+Sitemap: https://www.leelabs.agency/sitemap.xml 
