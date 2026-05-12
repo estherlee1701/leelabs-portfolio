@@ -22,9 +22,9 @@
 <link rel="canonical" href="https://www.leelabs.agency/">
 
 <!-- Favicon -->
-<link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a026e367d6006b8a145a73b_Lee%20Labs%20%26%20AF%20Logo%20(3).png">
-<link rel="shortcut icon" type="image/png" href="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a026e367d6006b8a145a73b_Lee%20Labs%20%26%20AF%20Logo%20(3).png">
-<link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a026e367d6006b8a145a73b_Lee%20Labs%20%26%20AF%20Logo%20(3).png">
+<link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png">
+<link rel="shortcut icon" type="image/png" href="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png">
+<link rel="apple-touch-icon" href="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png">
 
 <!-- Structured data: Person + Organization + WebSite -->
 <script type="application/ld+json">
@@ -36,7 +36,7 @@
       "@id": "https://www.leelabs.agency/#organization",
       "name": "Lee Labs",
       "url": "https://www.leelabs.agency/",
-      "logo": "https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a026e367d6006b8a145a73b_Lee%20Labs%20%26%20AF%20Logo%20(3).png",
+      "logo": "https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png",
       "email": "esther@leelabs.agency",
       "description": "A LA-based social media & special projects service for brands and the high-achieving executives who lead them.",
       "founder": { "@id": "https://www.leelabs.agency/#esther" },
@@ -100,7 +100,7 @@
       "@type": "ProfessionalService",
       "@id": "https://www.leelabs.agency/#service",
       "name": "Lee Labs",
-      "image": "https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a026e367d6006b8a145a73b_Lee%20Labs%20%26%20AF%20Logo%20(3).png",
+      "image": "https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png",
       "url": "https://www.leelabs.agency/",
       "telephone": "",
       "email": "esther@leelabs.agency",
@@ -187,14 +187,10 @@
   .logo img {
     height: 36px;
     width: auto;
-    /* Push near-white pixels to pure white so multiply blend catches them */
-    filter: brightness(1.1) contrast(1.18);
-    mix-blend-mode: multiply;
   }
-  /* On the dark footer, invert then screen-blend so the white bg drops out */
+  /* Footer logo: invert dark logo to light for dark footer bg */
   .footer .logo img {
-    filter: brightness(1.1) contrast(1.18) brightness(0) invert(1);
-    mix-blend-mode: screen;
+    filter: brightness(0) invert(1);
   }
   .nav-right { display: flex; gap: 32px; align-items: center; }
   .nav-right a { font-size: 13px; font-weight: 500; color: var(--ink-2); transition: color .2s; }
@@ -566,7 +562,7 @@
 <nav class="nav">
   <div class="wrap nav-inner">
     <a href="#" class="logo">
-      <img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a026e367d6006b8a145a73b_Lee%20Labs%20%26%20AF%20Logo%20(3).png" alt="Lee Labs">
+      <img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png" alt="Lee Labs">
       <span style="margin-left: 2px;">Lee Labs</span>
     </a>
     <div class="nav-right">
