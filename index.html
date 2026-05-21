@@ -13,11 +13,11 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.leelabs.agency/">
 <meta property="og:title" content="Lee Labs | Boutique social media for executives &amp; brands">
-<meta property="og:description" content="Social media strategist & content creator for wildly ambitious brands and the people who lead them.">
+<meta property="og:description" content="Lee Labs — a boutique social media service for wildly ambitious brands and the people who lead them.">
 <meta property="og:image" content="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/67bde7cfc8065bef633b3435_SEO%20Image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lee Labs | Boutique social media for executives &amp; brands">
-<meta name="twitter:description" content="Social media strategist & content creator for wildly ambitious brands and the people who lead them.">
+<meta name="twitter:description" content="Lee Labs — a boutique social media service for wildly ambitious brands and the people who lead them.">
 <meta name="twitter:image" content="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/67bde7cfc8065bef633b3435_SEO%20Image.jpg">
 <link rel="canonical" href="https://www.leelabs.agency/">
 
@@ -75,7 +75,7 @@
         "addressRegion": "CA",
         "addressCountry": "US"
       },
-      "description": "Social media strategist & content creator for wildly ambitious brands and the people who lead them. Work recognized by Meta, TikTok, ABC, Yelp, and LinkedIn.",
+      "description": "Lee Labs is a boutique social media service for wildly ambitious brands and the people who lead them. Founded by Esther Lee. Work recognized by Meta, TikTok, ABC, Yelp, and LinkedIn.",
       "knowsAbout": [
         "Social Media Strategy",
         "Content Creation",
@@ -155,6 +155,7 @@
 
   /* ============ STATUS BAR ============ */
   .status-bar {
+    position: sticky; top: 0; z-index: 60;
     background: var(--ink); color: var(--cream);
     padding: 10px var(--pad);
     display: flex; align-items: center; justify-content: center;
@@ -162,26 +163,19 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
   }
-  .status-bar .dot {
-    width: 8px; height: 8px; background: #4ADE80; border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(74,222,128,0.6);
-    animation: pulse 2.2s ease-out infinite;
-  }
-  @keyframes pulse {
-    0%   { box-shadow: 0 0 0 0 rgba(74,222,128,0.6); }
-    70%  { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
-    100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
-  }
   .status-bar a { color: var(--accent-2); transition: color .2s; display: inline-flex; align-items: center; gap: 4px; }
   .status-bar a:hover { color: var(--cream); }
   .status-bar .sep { opacity: 0.4; }
+  .status-bar .arrow { display: inline-block; transition: transform .25s; }
+  .status-bar a:hover .arrow { transform: translateX(3px); }
   @media (max-width: 600px) {
     .status-bar { font-size: 10px; letter-spacing: 0.08em; padding: 8px 16px; }
     .status-bar .sep { display: none; }
   }
 
   /* ============ NAV ============ */
-  .nav { position: sticky; top: 0; z-index: 50; background: rgba(244,239,230,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav { position: sticky; top: 38px; z-index: 50; background: rgba(244,239,230,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  @media (max-width: 600px) { .nav { top: 30px; } }
   .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
   .logo { display: flex; align-items: center; gap: 10px; font-family: 'Manrope', system-ui, sans-serif; font-weight: 400; font-size: 17px; }
   .logo img {
@@ -552,10 +546,9 @@
 
 <!-- ============ STATUS BAR ============ -->
 <div class="status-bar">
-  <span class="dot"></span>
-  <span>Currently available for new projects</span>
+  <span>Have a project in mind?</span>
   <span class="sep">·</span>
-  <a href="mailto:esther@leelabs.agency">esther@leelabs.agency ↗</a>
+  <a href="mailto:esther@leelabs.agency">Get in touch — esther@leelabs.agency <span class="arrow">↗</span></a>
 </div>
 
 <!-- ============ NAV ============ -->
@@ -587,7 +580,7 @@
 
   <div class="hero-bottom">
     <p class="hero-statement">
-      Social media strategist &amp; content creator for wildly ambitious brands and the people who lead them.
+      Lee Labs — a boutique social media service for wildly ambitious brands and the people who lead them.
     </p>
     <div class="hero-credits">
       <span class="label">Selected work for —</span>
@@ -629,6 +622,31 @@
       <div class="tile-overlay">
         <div class="tile-top"><span>03</span><span class="tile-views">3.2M Views</span></div>
         <div class="tile-bottom"><div class="tile-brand">Covry Eyewear · TikTok</div>Why you need Covry's</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="about">
+  <div class="wrap about-inner">
+    <div class="about-text">
+      <span class="eyebrow">— About</span>
+      <h2 class="display">A boutique <em>practice</em> built on instinct &amp; data.</h2>
+      <p>Esther Lee is the founder of Lee Labs — a Los Angeles social media &amp; special projects practice serving wildly ambitious brands and the people who lead them.</p>
+      <p>Her work has been recognized by Meta, TikTok, ABC, Yelp, and LinkedIn.</p>
+      <div class="about-meta">
+        <span class="label">Based</span><span class="val">Los Angeles, CA</span>
+        <span class="label">Experience</span><span class="val">10+ yrs · TV + social</span>
+        <span class="label">Network</span><span class="val">1,000+ founders &amp; creators</span>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="about-stats-grid">
+        <div class="about-stat-cell"><div class="num">100M+</div><div class="lab">Views</div></div>
+        <div class="about-stat-cell"><div class="num">20M+</div><div class="lab">Reach</div></div>
+        <div class="about-stat-cell"><div class="num">514%</div><div class="lab">Sales lift</div></div>
+        <div class="about-stat-cell"><div class="num">6×</div><div class="lab">Followers / 1 post</div></div>
       </div>
     </div>
   </div>
@@ -933,31 +951,6 @@
         </div>
       </div>
     </article>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section id="about" class="about">
-  <div class="wrap about-inner">
-    <div class="about-text">
-      <span class="eyebrow">— About</span>
-      <h2 class="display">A boutique <em>practice</em> built on instinct &amp; data.</h2>
-      <p>Esther Lee is the founder of Lee Labs — a Los Angeles social media &amp; special projects practice serving wildly ambitious brands and the people who lead them.</p>
-      <p>Her work has been recognized by Meta, TikTok, ABC, Yelp, and LinkedIn.</p>
-      <div class="about-meta">
-        <span class="label">Based</span><span class="val">Los Angeles, CA</span>
-        <span class="label">Experience</span><span class="val">10+ yrs · TV + social</span>
-        <span class="label">Network</span><span class="val">1,000+ founders &amp; creators</span>
-      </div>
-    </div>
-    <div class="about-visual">
-      <div class="about-stats-grid">
-        <div class="about-stat-cell"><div class="num">100M+</div><div class="lab">Views</div></div>
-        <div class="about-stat-cell"><div class="num">20M+</div><div class="lab">Reach</div></div>
-        <div class="about-stat-cell"><div class="num">514%</div><div class="lab">Sales lift</div></div>
-        <div class="about-stat-cell"><div class="num">6×</div><div class="lab">Followers / 1 post</div></div>
-      </div>
-    </div>
   </div>
 </section>
 
