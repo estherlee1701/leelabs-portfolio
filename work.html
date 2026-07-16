@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio · Lee Labs</title>
+<meta name="description" content="Client work portfolio · Lee Labs" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png">
+
+<style>
+  :root {
+    --bg: #F5F2ED; --bg-2: #EBE7DF;
+    --ink: #1A1A1A; --ink-2: #333333;
+    --muted: #857F76;
+    --line: rgba(26,26,26,0.10);
+    --accent: #1A1A1A; --accent-2: #333333;
+    --cream: #F7F5F0;
+    --max: 1400px;
+    --pad: clamp(32px, 6vw, 110px);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--ink); font-family: 'Inter Tight', system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; }
+  body { overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  img, video { max-width: 100%; display: block; }
+  .display { font-family: 'Inter Tight', system-ui, sans-serif; font-weight: 700; letter-spacing: -0.04em; line-height: 0.92; }
+  h1 em, h2 em { font-style: normal; font-weight: inherit; color: var(--ink); letter-spacing: -0.01em; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); }
+  .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+
+  /* ============ NAV ============ */
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.9); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: 'Inter Tight', system-ui, sans-serif; font-weight: 700; font-size: 17px; }
+  .logo img { height: 36px; width: auto; }
+  .nav-right { display: flex; gap: 32px; align-items: center; }
+  .nav-right a { font-size: 13px; font-weight: 500; color: var(--ink-2); transition: color .2s; }
+  .nav-right a:hover { color: var(--ink); }
+
+  /* ============ PASSWORD GATE ============ */
+  .gate { position: fixed; inset: 0; z-index: 100; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: var(--pad); }
+  .gate.hidden { display: none; }
+  .gate-inner { max-width: 480px; width: 100%; text-align: center; }
+  .gate-logo { height: 60px; width: auto; margin: 0 auto 40px; display: block; }
+  .gate h1 { font-size: clamp(36px, 5vw, 56px); font-weight: 700; margin-bottom: 16px; letter-spacing: -0.03em; }
+  .gate h1 em { font-style: normal; font-weight: inherit; }
+  .gate p { color: var(--muted); margin-bottom: 32px; line-height: 1.5; font-size: 15px; }
+  .gate-form { display: flex; flex-direction: column; gap: 12px; }
+  .gate-input {
+    width: 100%; padding: 16px 20px;
+    font-family: 'Inter Tight', system-ui, sans-serif; font-size: 15px; font-weight: 500;
+    background: var(--bg-2); border: 1px solid var(--line);
+    color: var(--ink);
+    transition: border-color .2s;
+  }
+  .gate-input:focus { outline: none; border-color: var(--ink); }
+  .gate-input.error { border-color: #C4451A; background: rgba(196,69,26,0.05); }
+  .gate-error { color: #C4451A; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; min-height: 14px; }
+  .gate-btn {
+    padding: 16px; background: var(--ink); color: var(--cream);
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    border: none; cursor: pointer; font-weight: 600;
+    transition: transform .2s, background .2s;
+  }
+  .gate-btn:hover { transform: translateY(-1px); background: #000; }
+  .gate-request { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+  .gate-request a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .gate-request a:hover { color: var(--accent-2); }
+
+  /* ============ WORK PAGE ============ */
+  .work-page { padding-top: clamp(50px, 6vw, 90px); padding-bottom: clamp(50px, 6vw, 90px); display: none; }
+  .work-page.revealed { display: block; }
+  .work-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: clamp(40px, 5vw, 70px); flex-wrap: wrap; }
+  .work-head h1 { font-size: clamp(48px, 8vw, 120px); font-weight: 700; letter-spacing: -0.04em; line-height: 0.92; }
+  .work-head-right { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); text-align: right; }
+  .work-head-right .total { font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(40px, 4vw, 56px); font-weight: 700; line-height: 1; color: var(--ink); letter-spacing: -0.02em; display: block; }
+  .filter-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: clamp(28px, 4vw, 48px); }
+  .pill { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--line); padding: 8px 14px; color: var(--ink-2); cursor: pointer; transition: all .2s; }
+  .pill:hover { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .pill.active { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .work-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  @media (max-width: 1100px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 720px) { .work-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+  .work-tile { position: relative; aspect-ratio: 9/16; background: var(--ink); overflow: hidden; cursor: pointer; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+  .work-tile video { width: 100%; height: 100%; object-fit: cover; }
+  .work-tile:hover { transform: translateY(-6px) scale(1.01); z-index: 2; }
+  .work-tile .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px; border: 1.5px solid rgba(255,255,255,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--cream); opacity: 0; transition: opacity .25s; }
+  .work-tile:hover .play-icon { opacity: 1; }
+  .tile-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 16px; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, transparent 25%, transparent 65%, rgba(0,0,0,0.75) 100%); color: var(--cream); }
+  .tile-top { display: flex; justify-content: space-between; align-items: flex-start; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .tile-views { background: rgba(13,13,13,0.7); padding: 4px 8px; }
+  .tile-bottom { font-size: 14px; line-height: 1.3; font-weight: 500; }
+  .tile-brand { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.85; margin-bottom: 4px; }
+  .tile-top-right { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+  .tile-highlight { color: var(--cream); padding: 5px 10px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; background: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+
+  /* Logout / back to home */
+  .work-footer { padding: 60px 0 40px; border-top: 1px solid var(--line); margin-top: 60px; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .work-footer a { font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); transition: color .2s; }
+  .work-footer a:hover { color: var(--accent-2); }
+
+  /* Lightbox */
+  .lightbox { position: fixed; inset: 0; background: rgba(10,10,10,0.94); display: none; align-items: center; justify-content: center; z-index: 100; padding: 24px; cursor: zoom-out; }
+  .lightbox.active { display: flex; }
+  .lightbox video { max-height: 92vh; max-width: 100%; aspect-ratio: 9/16; object-fit: contain; }
+  .lightbox-close { position: absolute; top: 24px; right: 24px; color: var(--cream); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<!-- ============ PASSWORD GATE ============ -->
+<div class="gate" id="gate">
+  <div class="gate-inner">
+    <img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png" alt="Lee Labs" class="gate-logo">
+    <h1 class="display">Client portfolio.</h1>
+    <p>Enter the access code shared with you to view our full body of work.</p>
+    <form class="gate-form" id="gate-form">
+      <input type="password" class="gate-input" id="gate-input" placeholder="Access code" autocomplete="off" autofocus />
+      <div class="gate-error" id="gate-error"></div>
+      <button type="submit" class="gate-btn">Enter →</button>
+    </form>
+    <div class="gate-request">
+      Don't have access?<br>
+      <a href="mailto:esther@leelabs.agency?subject=Portfolio%20access%20request">Request an access code</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NAV (visible after unlock) ============ -->
+<nav class="nav" id="page-nav" style="display: none;">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo">
+      <img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png" alt="Lee Labs">
+    </a>
+    <div class="nav-right">
+      <a href="/">← Back to Lee Labs</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ WORK PAGE ============ -->
+<main class="work-page wrap" id="work-page">
+  <div class="work-head">
+    <h1 class="display">The work</h1>
+    <div class="work-head-right">
+      <span class="total">15+</span>
+      Selected pieces · 2024–2026
+    </div>
+  </div>
+
+  <div class="filter-pills">
+    <span class="pill active" data-filter="all">All</span>
+    <span class="pill" data-filter="brand">Brand campaigns</span>
+    <span class="pill" data-filter="channel">Content / UGC</span>
+    <span class="pill" data-filter="onsite">Onsite coverage</span>
+  </div>
+
+  <div class="work-grid">
+    <div class="work-tile" data-category="channel" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5c9d7de7aa46cfd6e2ff0_Covry%20Video%20Asset_mp4.mp4">
+      <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5c9d7de7aa46cfd6e2ff0_Covry%20Video%20Asset_poster.0000000.jpg">
+        <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5c9d7de7aa46cfd6e2ff0_Covry%20Video%20Asset_mp4.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><div class="tile-top-right"><span class="tile-views">560K Views</span><span class="tile-highlight">First delivery</span></div></div>
+        <div class="tile-bottom"><div class="tile-brand">Covry Eyewear</div>Repurposed first delivery</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="brand" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87287c9395cc2cf4e1721_Lunar%20New%20Year%20with%20catherine_mp4.mp4">
+      <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87287c9395cc2cf4e1721_Lunar%20New%20Year%20with%20catherine_poster.0000000.jpg">
+        <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87287c9395cc2cf4e1721_Lunar%20New%20Year%20with%20catherine_mp4.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><div class="tile-top-right"><span class="tile-views">667K Views</span><span class="tile-highlight">Top 3 engagement '25</span></div></div>
+        <div class="tile-bottom"><div class="tile-brand">Meta · TUCHA</div>Mid-Autumn mooncake</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="onsite" data-video="avantika-zcon.mp4">
+      <video autoplay muted loop playsinline>
+        <source src="avantika-zcon.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><span class="tile-views">97K Views</span></div>
+        <div class="tile-bottom"><div class="tile-brand">For Asian Founded</div>Avantika Vandanapu at ZCON</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="brand" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_mp4.mp4">
+      <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_poster.0000000.jpg">
+        <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_mp4.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><div class="tile-top-right"><span class="tile-views">2.9M Views</span><span class="tile-highlight">Best of month</span></div></div>
+        <div class="tile-bottom"><div class="tile-brand">Meta · COTE</div>Michelin-star founder</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="channel" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3afcf9bf23e163669d0_52_mp4.mp4">
+      <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3afcf9bf23e163669d0_52_poster.0000000.jpg">
+        <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3afcf9bf23e163669d0_52_mp4.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><span class="tile-views">1.2M Views</span></div>
+        <div class="tile-bottom"><div class="tile-brand">Covry Eyewear</div>Savable carousel recs</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="channel" data-video="joseph-stacey.mp4">
+      <video autoplay muted loop playsinline>
+        <source src="joseph-stacey.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><div class="tile-top-right"><span class="tile-views">1.2M Views</span><span class="tile-highlight">16K saves</span></div></div>
+        <div class="tile-bottom"><div class="tile-brand">Joseph &amp; Stacey</div>Korean fashion</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="brand" data-video="rei-korean-camping.mp4">
+      <video autoplay muted loop playsinline>
+        <source src="rei-korean-camping.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span>@davidsjeong</span><div class="tile-top-right"><span class="tile-views">134K Views</span><span class="tile-highlight">Reposted by REI · 63.3K</span></div></div>
+        <div class="tile-bottom"><div class="tile-brand">REI</div>Korean camping food with REI</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="brand" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8746843cfd96ef3a19130_jooshica_mp4.mp4">
+      <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8746843cfd96ef3a19130_jooshica_poster.0000000.jpg">
+        <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8746843cfd96ef3a19130_jooshica_mp4.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><span class="tile-views">1.3M Views</span></div>
+        <div class="tile-bottom"><div class="tile-brand">Meta · Jooshica</div>Year of the Fire Horse</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="onsite" data-video="casetify-complexcon.mp4">
+      <video autoplay muted loop playsinline>
+        <source src="casetify-complexcon.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><span class="tile-views">On-site</span></div>
+        <div class="tile-bottom"><div class="tile-brand">For Asian Founded</div>Casetify @ ComplexCon</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="onsite" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_mp4.mp4">
+      <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_poster.0000000.jpg">
+        <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_mp4.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><span class="tile-views">On-site</span></div>
+        <div class="tile-bottom"><div class="tile-brand">APIA Scholars</div>Annual gala — LA</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="channel" data-video="orce-carousel.mp4">
+      <video autoplay muted loop playsinline>
+        <source src="orce-carousel.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><span class="tile-views">65K Views</span></div>
+        <div class="tile-bottom"><div class="tile-brand"><a href="https://orcecosmetics.com/" target="_blank" rel="noopener" style="color:inherit;">Orcé Cosmetics</a></div>Product carousel</div>
+      </div>
+    </div>
+    <div class="work-tile" data-category="channel onsite" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8783aca2f1d541d8c7f29_Brian%20Zhang_mp4.mp4">
+      <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8783aca2f1d541d8c7f29_Brian%20Zhang_poster.0000000.jpg">
+        <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8783aca2f1d541d8c7f29_Brian%20Zhang_mp4.mp4" type="video/mp4">
+      </video>
+      <div class="play-icon">▸</div>
+      <div class="tile-overlay">
+        <div class="tile-top"><span></span><span class="tile-views">On-site</span></div>
+        <div class="tile-bottom"><div class="tile-brand">APIA Scholars</div>Brian Zhang campaign</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="work-footer">
+    <a href="/">← Back to home</a>
+    <a href="#" id="logout">Log out</a>
+  </div>
+</main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">[ esc · close ]</span>
+  <video id="lightbox-video" controls></video>
+</div>
+
+<script>
+  // ===== PASSWORD GATE =====
+  // Change the password below to whatever you want to share with clients.
+  const PASSWORD = "leelabs2026";
+  const gate = document.getElementById('gate');
+  const gateForm = document.getElementById('gate-form');
+  const gateInput = document.getElementById('gate-input');
+  const gateError = document.getElementById('gate-error');
+  const workPage = document.getElementById('work-page');
+  const pageNav = document.getElementById('page-nav');
+
+  function unlock() {
+    gate.classList.add('hidden');
+    workPage.classList.add('revealed');
+    pageNav.style.display = 'block';
+    sessionStorage.setItem('lee-labs-work-unlocked', '1');
+    // Trigger reflow so autoplay videos start
+    document.querySelectorAll('.work-tile video').forEach(v => v.play().catch(()=>{}));
+  }
+
+  function checkPassword(pw) {
+    return pw.trim().toLowerCase() === PASSWORD.toLowerCase();
+  }
+
+  // Auto-unlock if session already validated
+  if (sessionStorage.getItem('lee-labs-work-unlocked') === '1') {
+    unlock();
+  }
+
+  gateForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const pw = gateInput.value;
+    if (checkPassword(pw)) {
+      gateError.textContent = '';
+      unlock();
+    } else {
+      gateError.textContent = 'Incorrect access code';
+      gateInput.classList.add('error');
+      gateInput.value = '';
+      setTimeout(() => gateInput.classList.remove('error'), 1200);
+    }
+  });
+
+  document.getElementById('logout').addEventListener('click', (e) => {
+    e.preventDefault();
+    sessionStorage.removeItem('lee-labs-work-unlocked');
+    location.reload();
+  });
+
+  // ===== LIGHTBOX =====
+  const lightbox = document.getElementById('lightbox');
+  const lightboxVideo = document.getElementById('lightbox-video');
+  function openTile(src) {
+    if (!src) return;
+    if (/tiktok\.com|instagram\.com|youtube\.com|youtu\.be/i.test(src)) {
+      window.open(src, '_blank', 'noopener'); return;
+    }
+    lightboxVideo.src = src;
+    lightbox.classList.add('active');
+    lightboxVideo.play();
+  }
+  document.querySelectorAll('[data-video]').forEach(tile => {
+    tile.addEventListener('click', () => openTile(tile.getAttribute('data-video')));
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    lightboxVideo.pause();
+    lightboxVideo.src = '';
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.click();
+  });
+
+  // ===== FILTER =====
+  const pills = document.querySelectorAll('.pill');
+  const tiles = document.querySelectorAll('.work-grid .work-tile');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      const filter = pill.getAttribute('data-filter') || 'all';
+      tiles.forEach(tile => {
+        const cats = (tile.getAttribute('data-category') || '').split(/\s+/).filter(Boolean);
+        tile.style.display = (filter === 'all' || cats.includes(filter)) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
