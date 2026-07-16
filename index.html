@@ -472,11 +472,11 @@
   .case-media-tile:hover { transform: translateY(-4px); }
   .case-media-tile video { width: 100%; height: 100%; object-fit: cover; }
 
-  /* ============ TESTIMONIALS (SLIDER) — tight modern ============ */
+  /* ============ TESTIMONIALS (SLIDER) — tight modern, light bg ============ */
   .testimonials {
-    background: var(--ink); color: #F7F5F0;
+    background: var(--bg-2); color: var(--ink);
     padding: clamp(40px, 5vw, 70px) 0;
-    border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
   }
   .testimonials-head {
     margin-bottom: clamp(20px, 2.5vw, 36px);
@@ -486,12 +486,12 @@
     font-size: clamp(18px, 1.8vw, 24px);
     font-family: 'Inter Tight', system-ui, sans-serif;
     font-weight: 600;
-    color: #F7F5F0;
+    color: var(--ink);
     letter-spacing: 0.06em;
     line-height: 1.2;
     text-transform: uppercase;
   }
-  .testimonials-head h2 em { color: #F7F5F0; }
+  .testimonials-head h2 em { color: var(--ink); }
 
   .testimonials-slider { position: relative; max-width: 1000px; margin: 0 auto; }
   .slider-viewport { overflow: hidden; }
@@ -513,7 +513,7 @@
     font-size: clamp(13px, 1.1vw, 16px);
     line-height: 1.55;
     font-weight: 600;
-    color: #F7F5F0;
+    color: var(--ink);
     margin-bottom: 28px;
     letter-spacing: 0.06em;
     text-transform: uppercase;
@@ -524,10 +524,10 @@
     padding-top: 0; border-top: none;
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(247,245,240,0.55);
+    color: var(--muted);
   }
   .quote-card-attr .dot { display: none; }
-  .quote-card-attr .role { color: #F7F5F0; font-weight: 500; }
+  .quote-card-attr .role { color: var(--ink); font-weight: 500; }
 
   /* Slider controls — arrows next to counter, centered */
   .slider-controls {
@@ -538,21 +538,21 @@
   .slider-dots { display: none; }
   .slider-arrow {
     width: 40px; height: 40px;
-    border: 1px solid rgba(247,245,240,0.25);
+    border: 1px solid rgba(26,26,26,0.25);
     background: transparent;
     cursor: pointer;
     display: flex; align-items: center; justify-content: center;
-    color: #F7F5F0;
+    color: var(--ink);
     transition: all .25s;
     border-radius: 0;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
   }
-  .slider-arrow:hover { background: #F7F5F0; color: var(--ink); border-color: #F7F5F0; }
+  .slider-arrow:hover { background: var(--ink); color: #F7F5F0; border-color: var(--ink); }
   .slider-counter {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px; letter-spacing: 0.16em;
-    color: rgba(247,245,240,0.65);
+    color: var(--muted);
     min-width: 60px; text-align: center;
     text-transform: uppercase;
   }
@@ -756,6 +756,84 @@
   </div>
 </section>
 
+<!-- ============ FEATURED CASES ============ -->
+<section class="featured-cases">
+  <div class="wrap">
+    <div class="case-head">
+      <h2 class="display">Case studies.</h2>
+    </div>
+
+    <article class="featured-case">
+      <div class="case-info">
+        <div class="case-tag">Social Media Management · TikTok</div>
+        <h3>Covry Eyewear</h3>
+        <div class="case-stats">
+          <div class="case-stat"><div class="case-stat-num">24.7M+</div><div class="case-stat-label">Views</div></div>
+          <div class="case-stat"><div class="case-stat-num">74K</div><div class="case-stat-label">Avg per post</div></div>
+          <div class="case-stat"><div class="case-stat-num">332</div><div class="case-stat-label">Posts delivered</div></div>
+        </div>
+      </div>
+      <div class="case-media">
+        <div class="case-media-tile">
+          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_poster.0000000.jpg">
+            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_mp4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="case-media-tile">
+          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_poster.0000000.jpg">
+            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_mp4.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </article>
+
+    <article class="featured-case">
+      <div class="case-info">
+        <div class="case-tag">Marketing · Instagram</div>
+        <h3>Meta</h3>
+        <div class="case-stats">
+          <div class="case-stat"><div class="case-stat-num">12M+</div><div class="case-stat-label">Reach</div></div>
+          <div class="case-stat"><div class="case-stat-num">#1</div><div class="case-stat-label">Record post</div></div>
+        </div>
+      </div>
+      <div class="case-media">
+        <div class="case-media-tile">
+          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_poster.0000000.jpg">
+            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_mp4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="case-media-tile">
+          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_poster.0000000.jpg">
+            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_mp4.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </article>
+
+    <article class="featured-case">
+      <div class="case-info">
+        <div class="case-tag">Social Media Management · Instagram</div>
+        <h3>APIA Scholars</h3>
+        <div class="case-stats">
+          <div class="case-stat"><div class="case-stat-num">174</div><div class="case-stat-label">Assets delivered</div></div>
+        </div>
+      </div>
+      <div class="case-media">
+        <div class="case-media-tile">
+          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_poster.0000000.jpg">
+            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_mp4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="case-media-tile">
+          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8817957443bcffc324dcd_APIA%20Scholars%20-%20Josh%20Tran_poster.0000000.jpg">
+            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8817957443bcffc324dcd_APIA%20Scholars%20-%20Josh%20Tran_mp4.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- ============ TESTIMONIALS ============ -->
 <section class="testimonials">
   <div class="wrap">
@@ -790,87 +868,6 @@
         <button class="slider-arrow" id="testimonialsNext" aria-label="Next testimonial">→</button>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- ============ FEATURED CASES ============ -->
-<section class="featured-cases">
-  <div class="wrap">
-    <div class="case-head">
-      <h2 class="display">The receipts.</h2>
-    </div>
-
-    <article class="featured-case">
-      <div class="case-info">
-        <div class="case-tag">Social Media Management · TikTok</div>
-        <h3>Covry Eyewear</h3>
-        <p>Created the "Headshake Test" — a TikTok-native concept that became the brand's most reliable ad asset and brought social-to-IRL impact.</p>
-        <div class="case-stats">
-          <div class="case-stat"><div class="case-stat-num">24.7M+</div><div class="case-stat-label">Views</div></div>
-          <div class="case-stat"><div class="case-stat-num">74K</div><div class="case-stat-label">Avg per post</div></div>
-          <div class="case-stat"><div class="case-stat-num">332</div><div class="case-stat-label">Posts delivered</div></div>
-        </div>
-      </div>
-      <div class="case-media">
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </article>
-
-    <article class="featured-case">
-      <div class="case-info">
-        <div class="case-tag">Marketing · Instagram</div>
-        <h3>Meta</h3>
-        <p>Concept-to-execution collaborations designed to amplify reach and connect with audiences in culturally relevant moments — Lunar New Year, Mid-Autumn, K-Pop, founder spotlights.</p>
-        <div class="case-stats">
-          <div class="case-stat"><div class="case-stat-num">12M+</div><div class="case-stat-label">Reach</div></div>
-          <div class="case-stat"><div class="case-stat-num">#1</div><div class="case-stat-label">Record post</div></div>
-        </div>
-      </div>
-      <div class="case-media">
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </article>
-
-    <article class="featured-case">
-      <div class="case-info">
-        <div class="case-tag">Social Media Management · Instagram</div>
-        <h3>APIA Scholars</h3>
-        <p>Editing, content creation, and event coverage for the nation's largest nonprofit dedicated to providing scholarships and resources to students in need — including fundraising campaigns with partners like Macy's, Target, Golden TV, and more.</p>
-        <div class="case-stats">
-          <div class="case-stat"><div class="case-stat-num">174</div><div class="case-stat-label">Assets delivered</div></div>
-        </div>
-      </div>
-      <div class="case-media">
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8817957443bcffc324dcd_APIA%20Scholars%20-%20Josh%20Tran_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8817957443bcffc324dcd_APIA%20Scholars%20-%20Josh%20Tran_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </article>
   </div>
 </section>
 
