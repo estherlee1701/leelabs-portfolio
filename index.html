@@ -657,6 +657,292 @@
   @media (prefers-reduced-motion: reduce) {
     .floating-heart { display: none; }
   }
+
+  /* ===== MEET ESTHER (Tran-style personal intro) ===== */
+  .meet-esther {
+    padding-top: clamp(50px, 7vw, 120px);
+    padding-bottom: clamp(50px, 7vw, 120px);
+    border-top: 1px solid var(--line);
+    overflow: hidden;
+  }
+  .meet-esther-tag {
+    overflow: hidden;
+    padding: 12px 0;
+    margin-bottom: clamp(32px, 5vw, 60px);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .meet-esther-tag-track {
+    display: flex;
+    gap: 32px;
+    white-space: nowrap;
+    animation: tag-scroll 30s linear infinite;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: clamp(20px, 2.4vw, 32px);
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .meet-esther-tag-track span { flex-shrink: 0; }
+  .meet-esther-tag-track .star { color: var(--muted); font-style: normal; }
+  @keyframes tag-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .meet-esther-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: clamp(28px, 5vw, 70px);
+    align-items: center;
+  }
+  @media (max-width: 900px) { .meet-esther-grid { grid-template-columns: 1fr; } }
+  .meet-esther h2 {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 32px;
+  }
+  .esther-bio-card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: clamp(24px, 3vw, 36px);
+    margin-bottom: 28px;
+  }
+  .esther-bio-card ul {
+    list-style: none;
+    padding: 0; margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .esther-bio-card li {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: clamp(14px, 1.15vw, 17px);
+    color: var(--ink-2);
+    line-height: 1.4;
+    padding-left: 22px;
+    position: relative;
+  }
+  .esther-bio-card li::before {
+    content: "•";
+    position: absolute;
+    left: 4px;
+    color: var(--muted);
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  .esther-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 100px;
+    transition: transform .2s, background .2s;
+    margin-bottom: 24px;
+  }
+  .esther-cta:hover { transform: translateY(-1px); background: #000; }
+  .esther-socials {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .esther-socials a {
+    color: var(--ink);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+  }
+  .esther-socials a:hover { color: var(--muted); }
+  .esther-socials .sep { color: var(--muted); }
+  .esther-portrait {
+    aspect-ratio: 4/5;
+    background: var(--bg-2);
+    border: 2px solid var(--ink);
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 10px 10px 0 rgba(26,26,26,0.12);
+  }
+  .esther-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+  .esther-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 20px; display: block;
+  }
+  .esther-origin {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: clamp(13px, 1vw, 15px);
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 24px;
+    max-width: 480px;
+    line-height: 1.5;
+  }
+
+  /* ===== CASE STUDIES PREVIEW + EMAIL FORM ===== */
+  .case-preview {
+    padding-top: clamp(50px, 7vw, 100px);
+    padding-bottom: clamp(50px, 7vw, 100px);
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+  }
+  .case-preview-head { text-align: center; margin-bottom: clamp(28px, 4vw, 44px); }
+  .case-preview .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 14px; display: block;
+  }
+  .case-preview h2 {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: clamp(32px, 4.5vw, 60px); font-weight: 600;
+    letter-spacing: -0.03em; line-height: 1; margin-bottom: 14px;
+  }
+  .case-preview .lede {
+    font-size: clamp(13px, 1vw, 16px); line-height: 1.5;
+    color: var(--ink-2); max-width: 520px; margin: 0 auto;
+  }
+  .preview-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    max-width: 900px;
+    margin: 0 auto clamp(28px, 4vw, 48px);
+  }
+  @media (max-width: 900px) { .preview-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 600px) { .preview-grid { grid-template-columns: repeat(3, 1fr); } }
+  .preview-tile {
+    aspect-ratio: 9/16; background: var(--ink); overflow: hidden; border-radius: 6px;
+    transition: transform .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .preview-tile:hover { transform: translateY(-3px); }
+  .preview-tile video, .preview-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .email-form { max-width: 520px; margin: 0 auto clamp(32px, 5vw, 56px); text-align: center; }
+  .email-form .note {
+    font-size: 14px; color: var(--ink-2); margin-bottom: 16px; line-height: 1.4;
+  }
+  .email-input-row {
+    display: flex; gap: 6px;
+    padding: 6px;
+    border-radius: 100px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+  }
+  .email-input-row input {
+    flex: 1; border: none; background: transparent;
+    padding: 12px 20px;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-size: 15px; color: var(--ink);
+    border-radius: 100px;
+  }
+  .email-input-row input:focus { outline: none; }
+  .email-input-row input::placeholder { color: var(--muted); }
+  .email-input-row button {
+    background: var(--ink); color: var(--cream);
+    border: none;
+    padding: 12px 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+    white-space: nowrap;
+  }
+  .email-input-row button:hover { background: #000; transform: translateY(-1px); }
+  .email-form .fine {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 14px;
+  }
+  .success-msg {
+    display: none;
+    padding: 24px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    color: var(--ink);
+  }
+  .success-msg .check { font-size: 24px; margin-bottom: 8px; }
+  .email-form.submitted .email-input-row,
+  .email-form.submitted .note,
+  .email-form.submitted .fine { display: none; }
+  .email-form.submitted .success-msg { display: block; }
+
+  /* ===== BRANDS ROSTER (circular colored grid) ===== */
+  .brands-roster {
+    padding-top: clamp(50px, 6vw, 100px);
+    padding-bottom: clamp(50px, 6vw, 100px);
+    border-top: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .brands-roster-head {
+    text-align: center;
+    margin-bottom: clamp(32px, 4vw, 56px);
+  }
+  .brands-roster-badge {
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(18px, 2vw, 28px);
+    color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    letter-spacing: -0.01em;
+  }
+  .brands-roster-badge .star { color: var(--muted); font-size: 0.8em; }
+  .brands-circles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: clamp(12px, 1.5vw, 22px);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .brand-circle {
+    flex: 0 0 calc((100% - 6 * 22px) / 7);
+    max-width: 150px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    font-family: 'Inter Tight', system-ui, sans-serif;
+    font-weight: 600;
+    font-size: clamp(11px, 1vw, 14px);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    transition: transform .3s cubic-bezier(.2,.8,.2,1);
+    cursor: default;
+  }
+  .brand-circle:hover { transform: translateY(-4px) scale(1.03); }
+  @media (max-width: 1100px) { .brand-circle { flex-basis: calc((100% - 5 * 18px) / 6); } }
+  @media (max-width: 800px) { .brand-circle { flex-basis: calc((100% - 4 * 14px) / 5); } }
+  @media (max-width: 560px) { .brand-circle { flex-basis: calc((100% - 3 * 12px) / 4); } }
+  @media (max-width: 380px) { .brand-circle { flex-basis: calc((100% - 2 * 12px) / 3); } }
+  /* Color rotation */
+  .brand-circle.c1 { background: #1A1A1A; color: #F7F5F0; }
+  .brand-circle.c2 { background: #F7F5F0; color: #1A1A1A; border: 1px solid rgba(26,26,26,0.15); }
+  .brand-circle.c3 { background: #C4451A; color: #F7F5F0; }
+  .brand-circle.c4 { background: #4F5D2F; color: #F7F5F0; }
+  .brand-circle.c5 { background: #E8DFCA; color: #1A1A1A; }
+  .brand-circle.c6 { background: #2B4C6F; color: #F7F5F0; }
+  .brand-circle.c7 { background: #D9AF7E; color: #1A1A1A; }
+  .brand-circle.c8 { background: #6B3F5E; color: #F7F5F0; }
 </style>
 </head>
 <body>
@@ -675,173 +961,115 @@
       <span style="margin-left: 2px;">Lee Labs</span>
     </a>
     <div class="nav-right">
-      <a href="#about">About</a>
+      <a href="#case-preview">Request portfolio</a>
       <a href="#services">Services</a>
       <a href="mailto:esther@leelabs.agency" class="nav-cta">Contact</a>
     </div>
   </div>
 </nav>
 
-<!-- ============ HERO ============ -->
-<section class="hero wrap">
-  <h1 class="display">
-    LEE <em>LABS</em>
-  </h1>
-
-</section>
-
-<!-- ============ FEATURED VIDEO STRIP ============ -->
-<section class="featured-strip">
-  <div class="featured-grid">
-    <!-- Big featured: Lunar New Year, 12.4M -->
-    <div class="featured-tile wide" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_mp4.mp4">
-      <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_poster.0000000.jpg">
-        <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_mp4.mp4" type="video/mp4">
-      </video>
-      <div class="tile-overlay">
-        <div class="tile-top"><span>Featured</span><div class="tile-top-right"><span class="tile-views">12.4M Views</span><span class="tile-highlight">Channel record</span></div></div>
-        <div class="tile-bottom"><div class="tile-brand">Meta · Instagram</div>Ringing in the New Year with traditional Korean food</div>
-      </div>
-    </div>
-    <div class="featured-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b872dcdd9f7fd1b5c8af4a_Kpop%20BTS_mp4.mp4">
-      <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b872dcdd9f7fd1b5c8af4a_Kpop%20BTS_poster.0000000.jpg">
-        <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b872dcdd9f7fd1b5c8af4a_Kpop%20BTS_mp4.mp4" type="video/mp4">
-      </video>
-      <div class="tile-overlay">
-        <div class="tile-top"><span>02</span><span class="tile-views">2.1M Views</span></div>
-        <div class="tile-bottom"><div class="tile-brand">Meta · Ray-Ban Meta</div>A day in the life with a K-Pop artist</div>
-      </div>
-    </div>
-    <div class="featured-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_mp4.mp4">
-      <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_poster.0000000.jpg">
-        <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_mp4.mp4" type="video/mp4">
-      </video>
-      <div class="tile-overlay">
-        <div class="tile-top"><span>03</span><span class="tile-views">3.2M Views</span></div>
-        <div class="tile-bottom"><div class="tile-brand">Covry Eyewear · TikTok</div>Why you need Covry's</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ LOGOS MARQUEE ============ -->
-<section class="logos">
-  <div class="marquee">
-    <div class="marquee-track">
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c3cc583f0720274010_25.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c4d394b4c3b8272fc6_27.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/68431c1d94eab33de083a60c_Logos%20for%20website%20(1).png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c45e2e54fd8c5d8219_26.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c4d0aa96536e47d578_19.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c402eb396298d81cb3_18.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c4d08db77f527af423_20.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c436bc3db1b289b0b5_23.png" alt=""></span>
-    </div>
-    <div class="marquee-track" aria-hidden="true">
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c3cc583f0720274010_25.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c4d394b4c3b8272fc6_27.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/68431c1d94eab33de083a60c_Logos%20for%20website%20(1).png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c45e2e54fd8c5d8219_26.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c4d0aa96536e47d578_19.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c402eb396298d81cb3_18.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c4d08db77f527af423_20.png" alt=""></span>
-      <span class="logo-item"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69a699c436bc3db1b289b0b5_23.png" alt=""></span>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ABOUT (rosalie-style centered) ============ -->
-<section id="about" class="about-centered">
+<!-- ============ MEET ESTHER ============ -->
+<section class="meet-esther">
   <div class="wrap">
-    <div class="about-stats-mono">
-      <span>100M+ Views</span>
-      <span class="dot">·</span>
-      <span>20M+ Reach</span>
-      <span class="dot">·</span>
-      <span>11+ Clients</span>
+    <div class="meet-esther-grid">
+      <div>
+        <span class="esther-eyebrow">From the same team @asianfounded</span>
+        <h2>Hey, I'm Esther! :)</h2>
+        <div class="esther-bio-card">
+          <ul>
+            <li>11+ years across social media, marketing, and television</li>
+            <li>100M+ views delivered across client work</li>
+            <li>Creator, Asian Founded</li>
+            <li>Based in Los Angeles, CA</li>
+          </ul>
+        </div>
+        <a href="#case-preview" class="esther-cta">See case studies →</a>
+        <div class="esther-socials">
+          <a href="https://instagram.com/leelabs" target="_blank" rel="noopener">Instagram</a>
+          <span class="sep">★</span>
+          <a href="mailto:esther@leelabs.agency">esther@leelabs.agency</a>
+        </div>
+      </div>
+      <div class="esther-portrait"><img src="esther-portrait.jpg" alt="Esther Lee, founder of Lee Labs"></div>
     </div>
-    <p class="about-copy">
-      Lee Labs is a social media marketing and special projects agency for wildly ambitious brands and the people who lead them.
-    </p>
-    <a href="mailto:esther@leelabs.agency" class="about-inquire">Contact <span class="arrow">→</span></a>
   </div>
 </section>
 
-<!-- ============ FEATURED CASES ============ -->
-<section class="featured-cases">
+
+<!-- ============ BRANDS ROSTER ============ -->
+<section class="brands-roster">
   <div class="wrap">
-    <div class="case-head">
-      <h2 class="display">Case studies.</h2>
+    <div class="brands-roster-head">
+      <div class="brands-roster-badge">
+        <span>22+ Brands</span><span class="star">★</span><span>100M+ Views</span><span class="star">★</span><span>20M+ Reach</span>
+      </div>
+    </div>
+    <div class="brands-circles">
+      <div class="brand-circle c1">Spotify</div>
+      <div class="brand-circle c2">TikTok</div>
+      <div class="brand-circle c3">Meta</div>
+      <div class="brand-circle c4">YouTube</div>
+      <div class="brand-circle c5">Sony Pictures</div>
+      <div class="brand-circle c6">Amazon Prime</div>
+      <div class="brand-circle c7">Material Kitchen</div>
+      <div class="brand-circle c8">YINA</div>
+      <div class="brand-circle c1">Orcé Cosmetics</div>
+      <div class="brand-circle c2">50Hertz</div>
+      <div class="brand-circle c3">Yellow Chair Collective</div>
+      <div class="brand-circle c4">APIA Scholars</div>
+      <div class="brand-circle c5">Covry Eyewear</div>
+      <div class="brand-circle c6">Tend Prenatal</div>
+      <div class="brand-circle c7">Elorea</div>
+      <div class="brand-circle c8">Omnicom</div>
+      <div class="brand-circle c1">okko</div>
+      <div class="brand-circle c2">Kaytran</div>
+      <div class="brand-circle c3">Hero Cosmetics</div>
+      <div class="brand-circle c4">W Concept</div>
+      <div class="brand-circle c5">NBC Comcast</div>
+      <div class="brand-circle c6">Jilly Bing</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CASE STUDIES PREVIEW + EMAIL FORM ============ -->
+<section id="case-preview" class="case-preview">
+  <div class="wrap">
+    <div class="case-preview-head">
+      <span class="eyebrow">Case Studies</span>
+      <h2>See the full portfolio.</h2>
+      <p class="lede">A preview of recent client work. Enter your email and we'll send you the link and password to the full portfolio.</p>
     </div>
 
-    <article class="featured-case">
-      <div class="case-info">
-        <div class="case-tag">Social Media Management · TikTok</div>
-        <h3>Covry Eyewear</h3>
-        <div class="case-stats">
-          <div class="case-stat"><div class="case-stat-num">24.7M+</div><div class="case-stat-label">Views</div></div>
-          <div class="case-stat"><div class="case-stat-num">74K</div><div class="case-stat-label">Avg per post</div></div>
-          <div class="case-stat"><div class="case-stat-num">332</div><div class="case-stat-label">Posts delivered</div></div>
-        </div>
+    <!-- Klaviyo API: replace YOUR_KLAVIYO_PUBLIC_KEY (company_id) and YOUR_LIST_ID below. Set up a flow in Klaviyo triggered by list subscription to auto-send portfolio password. -->
+    <form class="email-form" id="email-form" data-klaviyo-list="W5r78Z" data-klaviyo-key="UmXjeN">
+      <div class="email-input-row">
+        <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
+        <button type="submit">Send me the link →</button>
       </div>
-      <div class="case-media">
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
+      <p class="fine">No spam. Just one email with access details.</p>
+      <div class="success-msg">
+        <div class="check">✓</div>
+        <p>Sent. Check your inbox for the portfolio link and password.</p>
       </div>
-    </article>
+    </form>
 
-    <article class="featured-case">
-      <div class="case-info">
-        <div class="case-tag">Marketing · Instagram</div>
-        <h3>Meta</h3>
-        <div class="case-stats">
-          <div class="case-stat"><div class="case-stat-num">12M+</div><div class="case-stat-label">Reach</div></div>
-          <div class="case-stat"><div class="case-stat-num">#1</div><div class="case-stat-label">Record post</div></div>
-        </div>
-      </div>
-      <div class="case-media">
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </article>
-
-    <article class="featured-case">
-      <div class="case-info">
-        <div class="case-tag">Social Media Management · Instagram</div>
-        <h3>APIA Scholars</h3>
-        <div class="case-stats">
-          <div class="case-stat"><div class="case-stat-num">174</div><div class="case-stat-label">Assets delivered</div></div>
-        </div>
-      </div>
-      <div class="case-media">
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="case-media-tile">
-          <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8817957443bcffc324dcd_APIA%20Scholars%20-%20Josh%20Tran_poster.0000000.jpg">
-            <source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8817957443bcffc324dcd_APIA%20Scholars%20-%20Josh%20Tran_mp4.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </article>
+    <div class="preview-grid">
+      <div class="preview-tile"><video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_mp4.mp4" type="video/mp4"></video></div>
+      <div class="preview-tile"><video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_mp4.mp4" type="video/mp4"></video></div>
+      <div class="preview-tile"><video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b872dcdd9f7fd1b5c8af4a_Kpop%20BTS_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b872dcdd9f7fd1b5c8af4a_Kpop%20BTS_mp4.mp4" type="video/mp4"></video></div>
+      <div class="preview-tile"><video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8746843cfd96ef3a19130_jooshica_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8746843cfd96ef3a19130_jooshica_mp4.mp4" type="video/mp4"></video></div>
+      <div class="preview-tile"><video autoplay muted loop playsinline><source src="meta-laurdiy.mp4" type="video/mp4"></video></div>
+      <div class="preview-tile"><video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_mp4.mp4" type="video/mp4"></video></div>
+      <div class="preview-tile"><video autoplay muted loop playsinline><source src="rei-korean-camping.mp4" type="video/mp4"></video></div>
+      <div class="preview-tile"><video autoplay muted loop playsinline><source src="avantika-zcon.mp4" type="video/mp4"></video></div>
+      <div class="preview-tile"><video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_mp4.mp4" type="video/mp4"></video></div>
+      <div class="preview-tile"><img src="elorea-1.jpg" alt="Elorea event"></div>
+      <div class="preview-tile"><img src="youtube-1.jpg" alt="YouTube API Creator Gala"></div>
+      <div class="preview-tile"><img src="youtube-3.jpg" alt="YouTube API Creator Gala"></div>
+      <div class="preview-tile"><img src="sxsw-1.jpg" alt="Toyota × Dear Asian Americans at SXSW"></div>
+      <div class="preview-tile"><img src="orce-launch-1.jpg" alt="Orcé Lip Tint Launch Event"></div>
+      <div class="preview-tile"><img src="orce-launch-3.jpg" alt="Orcé Lip Tint Launch Event"></div>
+    </div>
   </div>
 </section>
 
@@ -1118,6 +1346,62 @@
       });
     });
   });
+
+  // ===== EMAIL FORM (Klaviyo Subscribe API) =====
+  const emailForm = document.getElementById('email-form');
+  if (emailForm) {
+    emailForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn = form.querySelector('button[type="submit"]');
+      const emailInput = form.querySelector('input[name="email"]');
+      const listId = form.getAttribute('data-klaviyo-list');
+      const companyId = form.getAttribute('data-klaviyo-key');
+      const originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      try {
+        const response = await fetch(
+          `https://a.klaviyo.com/client/subscriptions/?company_id=${companyId}`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'revision': '2024-10-15'
+            },
+            body: JSON.stringify({
+              data: {
+                type: 'subscription',
+                attributes: {
+                  custom_source: 'Portfolio request',
+                  profile: {
+                    data: {
+                      type: 'profile',
+                      attributes: { email: emailInput.value }
+                    }
+                  }
+                },
+                relationships: {
+                  list: { data: { type: 'list', id: listId } }
+                }
+              }
+            })
+          }
+        );
+        if (response.ok || response.status === 202) {
+          form.classList.add('submitted');
+        } else {
+          alert('Something went wrong. Please email esther@leelabs.agency directly.');
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }
+      } catch (err) {
+        alert('Something went wrong. Please email esther@leelabs.agency directly.');
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    });
+  }
 </script>
 
 </body>
