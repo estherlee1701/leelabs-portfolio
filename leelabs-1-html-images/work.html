@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Client Portfolio · Lee Labs</title>
+<meta name="description" content="Client case studies · Lee Labs" />
+<meta name="robots" content="noindex,nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png">
+
+<style>
+  :root {
+    --bg: #F5F2ED; --bg-2: #EBE7DF;
+    --ink: #1A1A1A; --ink-2: #333333;
+    --muted: #857F76;
+    --line: rgba(26,26,26,0.10);
+    --cream: #F7F5F0;
+    --max: 1400px;
+    --pad: clamp(32px, 6vw, 110px);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--bg); color: var(--ink); font-family: 'Inter Tight', system-ui, sans-serif; font-weight: 500; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+  body { overflow-x: hidden; }
+  a { color: inherit; text-decoration: none; }
+  img, video { max-width: 100%; display: block; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+
+  .gate { position: fixed; inset: 0; z-index: 100; background: var(--bg); display: flex; align-items: center; justify-content: center; padding: var(--pad); }
+  .gate.hidden { display: none; }
+  .gate-inner { max-width: 480px; width: 100%; text-align: center; }
+  .gate-logo { height: 60px; width: auto; margin: 0 auto 40px; display: block; }
+  .gate h1 { font-size: clamp(28px, 3.5vw, 40px); font-weight: 600; margin-bottom: 16px; letter-spacing: -0.03em; text-transform: uppercase; }
+  .gate p { color: var(--muted); margin-bottom: 32px; line-height: 1.5; font-size: 14px; }
+  .gate-form { display: flex; flex-direction: column; gap: 12px; }
+  .gate-input { width: 100%; padding: 16px 20px; font-family: 'Inter Tight', system-ui, sans-serif; font-size: 15px; font-weight: 500; background: var(--bg-2); border: 1px solid var(--line); color: var(--ink); transition: border-color .2s; }
+  .gate-input:focus { outline: none; border-color: var(--ink); }
+  .gate-input.error { border-color: #C4451A; background: rgba(196,69,26,0.05); }
+  .gate-error { color: #C4451A; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; min-height: 14px; }
+  .gate-btn { padding: 16px; background: var(--ink); color: var(--cream); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; border: none; cursor: pointer; font-weight: 600; transition: transform .2s, background .2s; }
+  .gate-btn:hover { transform: translateY(-1px); background: #000; }
+  .gate-request { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+  .gate-request a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(245,242,237,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-family: 'Inter Tight', system-ui, sans-serif; font-weight: 600; font-size: 15px; text-transform: uppercase; letter-spacing: 0.02em; }
+  .logo img { height: 32px; width: auto; }
+  .nav-right { display: flex; gap: 24px; align-items: center; }
+  .nav-right a { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; transition: color .2s; cursor: pointer; }
+  .nav-right a:hover { color: var(--muted); }
+  .nav-right #logout { color: var(--muted); }
+
+  .service-tabs { position: sticky; top: 64px; z-index: 40; background: rgba(245,242,237,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+  .service-tabs-inner { display: flex; gap: 4px; overflow-x: auto; -webkit-overflow-scrolling: touch; padding-top: 16px; padding-bottom: 16px; padding-left: var(--pad); padding-right: var(--pad); max-width: var(--max); margin: 0 auto; scrollbar-width: none; }
+  .service-tabs-inner::-webkit-scrollbar { display: none; }
+  .service-tab { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); background: transparent; border: none; padding: 8px 14px; cursor: pointer; white-space: nowrap; transition: color .2s, background .2s; border-radius: 0; }
+  .service-tab:hover { color: var(--ink); }
+  .service-tab.active { color: var(--cream); background: var(--ink); }
+
+  .work-page { display: none; }
+  .work-page.revealed { display: block; }
+  .page-intro { padding-top: clamp(40px, 5vw, 70px); padding-bottom: clamp(24px, 3vw, 40px); }
+  .page-intro .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; display: block; }
+  .page-intro h1 { font-size: clamp(36px, 5vw, 72px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; margin-bottom: 20px; }
+  .page-intro .intro-copy { font-size: clamp(14px, 1.1vw, 17px); line-height: 1.55; color: var(--ink-2); max-width: 640px; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .case-study { padding-top: clamp(40px, 5vw, 70px); padding-bottom: clamp(40px, 5vw, 70px); border-top: 1px solid var(--line); scroll-margin-top: 140px; }
+  .case-head { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(28px, 4vw, 64px); margin-bottom: clamp(24px, 3vw, 40px); align-items: start; }
+  @media (max-width: 900px) { .case-head { grid-template-columns: 1fr; gap: 20px; } }
+  .case-meta { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; display: block; }
+  .case-name { font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(32px, 4.5vw, 64px); font-weight: 600; letter-spacing: -0.03em; line-height: 0.95; margin-bottom: 12px; }
+  .case-subtitle { font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(14px, 1.2vw, 18px); color: var(--muted); font-weight: 500; line-height: 1.35; }
+  .case-body p { font-size: clamp(13px, 1vw, 16px); line-height: 1.65; color: var(--ink-2); margin-bottom: 16px; }
+  .case-body p:last-child { margin-bottom: 0; }
+
+  .services-provided { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
+  .services-provided-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; display: block; }
+  .services-provided-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .services-pill { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 12px; border: 1px solid var(--line); color: var(--ink); background: transparent; }
+
+  .case-stats { display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 56px); padding: 20px 0; margin-bottom: clamp(24px, 3vw, 40px); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .case-stat .num { display: block; font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(22px, 2.6vw, 36px); font-weight: 600; letter-spacing: -0.02em; line-height: 1; color: var(--ink); }
+  .case-stat .lab { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-top: 8px; display: block; }
+
+  .case-videos { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: flex-start; }
+  .case-videos > * { flex: 1 1 200px; max-width: calc((100% - 36px) / 4); aspect-ratio: 9/16; }
+  .case-videos + .case-videos { margin-top: 12px; }
+  .case-videos--landscape > * { aspect-ratio: 3/2; }
+  .case-videos--square > * { aspect-ratio: 1/1; }
+  @media (max-width: 900px) { .case-videos > * { max-width: calc((100% - 24px) / 3); } }
+  @media (max-width: 600px) { .case-videos > * { max-width: calc((100% - 12px) / 2); flex-basis: 140px; } }
+
+  .video-tile, .image-tile { position: relative; background: var(--ink); overflow: hidden; cursor: pointer; transition: transform .4s cubic-bezier(.2,.8,.2,1); }
+  .video-tile:hover, .image-tile:hover { transform: translateY(-4px); }
+  .video-tile video, .image-tile img { width: 100%; height: 100%; object-fit: cover; }
+  .video-tile .play-icon, .image-tile .play-icon { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 44px; height: 44px; border: 1px solid rgba(247,245,240,0.7); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--cream); opacity: 0; transition: opacity .25s; }
+  .video-tile:hover .play-icon, .image-tile:hover .play-icon { opacity: 1; }
+  .tile-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 14px; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, transparent 25%, transparent 65%, rgba(0,0,0,0.8) 100%); color: var(--cream); }
+  .tile-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .tile-views { background: rgba(13,13,13,0.7); padding: 4px 8px; font-weight: 500; }
+  .tile-badge { background: var(--cream); color: var(--ink); padding: 6px 10px; font-weight: 700; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; border-radius: 2px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+  .tile-bottom { font-family: 'Inter Tight', system-ui, sans-serif; font-size: 12px; font-weight: 500; line-height: 1.3; }
+
+  .placeholder-tile { background: repeating-linear-gradient(45deg, var(--bg-2) 0 12px, var(--bg) 12px 24px); border: 1px solid var(--line); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.5; }
+  .placeholder-tile-inner { max-width: 200px; }
+  .placeholder-tile-icon { font-size: 24px; margin-bottom: 10px; color: var(--muted); }
+
+  .case-quote { margin: clamp(24px, 4vw, 40px) 0 0; padding: clamp(20px, 3vw, 32px) 0 0; border-top: 1px solid var(--line); text-align: center; }
+  .case-quote p { font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(14px, 1.2vw, 17px); font-weight: 600; line-height: 1.45; color: var(--ink); max-width: 720px; margin: 0 auto 12px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .case-quote .attr { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+
+  .row-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin: clamp(20px, 3vw, 32px) 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+
+  .work-footer { padding-top: clamp(40px, 5vw, 70px); padding-bottom: clamp(24px, 3vw, 40px); margin-top: clamp(20px, 3vw, 40px); border-top: 1px solid var(--line); background: var(--ink); color: var(--cream); }
+  .work-footer .wrap { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; flex-wrap: wrap; }
+  .work-footer h2 { font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(24px, 3.5vw, 44px); font-weight: 600; letter-spacing: -0.03em; color: var(--cream); }
+  .work-footer .contact { display: flex; align-items: center; gap: 10px; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cream); text-decoration: underline; text-underline-offset: 4px; }
+
+  /* ===== MEET ESTHER (mirrors homepage) ===== */
+  .meet-esther { padding-top: clamp(50px, 7vw, 120px); padding-bottom: clamp(50px, 7vw, 120px); }
+  .meet-esther-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(28px, 5vw, 70px); align-items: center; }
+  @media (max-width: 900px) { .meet-esther-grid { grid-template-columns: 1fr; } }
+  .meet-esther h2 { font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(40px, 6vw, 80px); font-weight: 600; letter-spacing: -0.03em; line-height: 1; margin-bottom: 32px; }
+  .esther-eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; display: block; }
+  .esther-bio-card { background: var(--cream); border: 1px solid var(--line); border-radius: 24px; padding: clamp(24px, 3vw, 36px); margin-bottom: 28px; }
+  .esther-bio-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .esther-bio-card li { font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(14px, 1.15vw, 17px); color: var(--ink-2); line-height: 1.4; padding-left: 22px; position: relative; }
+  .esther-bio-card li::before { content: "•"; position: absolute; left: 4px; color: var(--muted); font-size: 18px; line-height: 1.2; }
+  .esther-origin { font-family: 'Inter Tight', system-ui, sans-serif; font-size: clamp(13px, 1vw, 15px); color: var(--muted); font-style: italic; margin-bottom: 24px; max-width: 480px; line-height: 1.5; }
+  .esther-cta { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; background: var(--ink); color: var(--cream); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; border-radius: 100px; transition: transform .2s, background .2s; margin-bottom: 24px; }
+  .esther-cta:hover { transform: translateY(-1px); background: #000; }
+  .esther-socials { display: flex; align-items: center; gap: 24px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .esther-socials a { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+  .esther-socials .sep { color: var(--muted); }
+  .esther-portrait { aspect-ratio: 4/5; background: var(--bg-2); border: 2px solid var(--ink); border-radius: 24px; overflow: hidden; position: relative; box-shadow: 10px 10px 0 rgba(26,26,26,0.12); }
+  .esther-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+  /* ===== BRANDS ROSTER (mirrors homepage) ===== */
+  .brands-roster-work { padding-top: clamp(50px, 6vw, 100px); padding-bottom: clamp(50px, 6vw, 100px); border-top: 1px solid var(--line); background: var(--bg); }
+  .brands-roster-head { text-align: center; margin-bottom: clamp(32px, 4vw, 56px); }
+  .brands-roster-badge { font-family: 'Inter Tight', system-ui, sans-serif; font-weight: 600; font-size: clamp(18px, 2vw, 28px); color: var(--ink); display: inline-flex; align-items: center; gap: 16px; letter-spacing: -0.01em; }
+  .brands-roster-badge .star { color: var(--muted); font-size: 0.8em; }
+  .brands-circles { display: flex; flex-wrap: wrap; justify-content: center; gap: clamp(12px, 1.5vw, 22px); max-width: 1200px; margin: 0 auto; }
+  .brand-circle { flex: 0 0 calc((100% - 6 * 22px) / 7); max-width: 150px; aspect-ratio: 1/1; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-align: center; padding: 12px; font-family: 'Inter Tight', system-ui, sans-serif; font-weight: 600; font-size: clamp(11px, 1vw, 14px); letter-spacing: -0.01em; line-height: 1.2; transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+  .brand-circle:hover { transform: translateY(-4px) scale(1.03); }
+  @media (max-width: 1100px) { .brand-circle { flex-basis: calc((100% - 5 * 18px) / 6); } }
+  @media (max-width: 800px) { .brand-circle { flex-basis: calc((100% - 4 * 14px) / 5); } }
+  @media (max-width: 560px) { .brand-circle { flex-basis: calc((100% - 3 * 12px) / 4); } }
+  .brand-circle.c1 { background: #1A1A1A; color: #F7F5F0; }
+  .brand-circle.c2 { background: #F7F5F0; color: #1A1A1A; border: 1px solid rgba(26,26,26,0.15); }
+  .brand-circle.c3 { background: #C4451A; color: #F7F5F0; }
+  .brand-circle.c4 { background: #4F5D2F; color: #F7F5F0; }
+  .brand-circle.c5 { background: #E8DFCA; color: #1A1A1A; }
+  .brand-circle.c6 { background: #2B4C6F; color: #F7F5F0; }
+  .brand-circle.c7 { background: #D9AF7E; color: #1A1A1A; }
+  .brand-circle.c8 { background: #6B3F5E; color: #F7F5F0; }
+
+  /* ===== PORTFOLIO BAR (slim replacement for page-intro) ===== */
+  .portfolio-bar { padding-top: 14px; padding-bottom: 14px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; gap: 16px; align-items: baseline; justify-content: space-between; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+  .portfolio-bar .bar-title { color: var(--ink); font-weight: 600; }
+
+  .lightbox { position: fixed; inset: 0; background: rgba(10,10,10,0.94); display: none; align-items: center; justify-content: center; z-index: 100; padding: 24px; cursor: zoom-out; }
+  .lightbox.active { display: flex; }
+  .lightbox video, .lightbox img { max-height: 92vh; max-width: 100%; object-fit: contain; }
+  .lightbox video { aspect-ratio: 9/16; }
+  .lightbox-close { position: absolute; top: 24px; right: 24px; color: var(--cream); font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; }
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <div class="gate-inner">
+    <img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png" alt="Lee Labs" class="gate-logo">
+    <h1>Client Portfolio</h1>
+    <p>Enter the access code shared with you to view the full case studies.</p>
+    <form class="gate-form" id="gate-form">
+      <input type="password" class="gate-input" id="gate-input" placeholder="Access code" autocomplete="off" autofocus />
+      <div class="gate-error" id="gate-error"></div>
+      <button type="submit" class="gate-btn">Enter →</button>
+    </form>
+    <div class="gate-request">Don't have access?<br><a href="mailto:esther@leelabs.agency?subject=Portfolio%20access%20request">Request an access code</a></div>
+  </div>
+</div>
+
+<nav class="nav" id="page-nav" style="display: none;">
+  <div class="wrap nav-inner">
+    <a href="/" class="logo"><img src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/6a02859198fe0265f476090d_Lee%20Labs%20%26%20AF%20Logo%20(2).png" alt="Lee Labs">Lee Labs</a>
+    <div class="nav-right"><a href="/">← Back to site</a><a id="logout">Log out</a></div>
+  </div>
+</nav>
+
+<main class="work-page" id="work-page">
+
+  <!-- ============ MEET ESTHER ============ -->
+  <section class="meet-esther wrap">
+    <div class="meet-esther-grid">
+      <div>
+        <span class="esther-eyebrow">From the same team @asianfounded</span>
+        <h2>Hey, I'm Esther! :)</h2>
+        <div class="esther-bio-card">
+          <ul>
+            <li>11+ years across social media, marketing, and television</li>
+            <li>100M+ views delivered across client work</li>
+            <li>Creator, Asian Founded</li>
+            <li>Based in Los Angeles, CA</li>
+          </ul>
+        </div>
+        <a href="#service-tabs" class="esther-cta">See case studies ↓</a>
+        <div class="esther-socials">
+          <a href="https://instagram.com/leelabs" target="_blank" rel="noopener">Instagram</a>
+          <span class="sep">★</span>
+          <a href="mailto:esther@leelabs.agency">esther@leelabs.agency</a>
+        </div>
+      </div>
+      <div class="esther-portrait"><img src="esther-portrait.jpg" alt="Esther Lee, founder of Lee Labs"></div>
+    </div>
+  </section>
+
+  <!-- ============ PORTFOLIO BAR + SERVICE TABS ============ -->
+  <div class="portfolio-bar wrap">
+    <span><span class="bar-title">Client Portfolio</span> · Case studies · 2021 – Present</span>
+    <span>Ordered most recent to oldest</span>
+  </div>
+
+  <div class="service-tabs" id="service-tabs">
+    <div class="service-tabs-inner">
+      <button class="service-tab active" data-tab="digital">Digital Marketing</button>
+      <button class="service-tab" data-tab="event">Event Strategy &amp; Programming</button>
+      <button class="service-tab" data-tab="influencer">Influencer</button>
+    </div>
+  </div>
+
+  <!-- ============ DIGITAL MARKETING ============ -->
+  <div class="tab-panel active" data-panel="digital">
+
+    <!-- 1. Asian Founded -->
+    <article class="case-study" id="af-digital">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Digital Marketing · Multi-channel · 2021–Ongoing</span>
+            <h2 class="case-name">Asian Founded</h2>
+            <p class="case-subtitle">Platform-wide content, community, and nationwide activations</p>
+          </div>
+          <div class="case-body">
+            <p>Asian Founded is a platform amplifying Asian creators, brands, and founders. We built the channel from launch, highlighting 300+ brands and founders across partnerships with TikTok, Spotify, LinkedIn, Meta, Sony Pictures, Basma Beauty, Copper Cow Coffee, and Hero Cosmetics. Grew the channel to 80K+ followers in one year and directed $65K in grants to Asian-owned businesses.</p>
+            <p>Beyond content, we've hosted 20+ events nationwide, including activations during cultural moments like Super Bowl LVIII and South by Southwest. We also created the first demo day of its kind, with 30 brands participating and a $15K grand prize awarded to the winning founder.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">360 Marketing</span><span class="services-pill">Content Creation</span><span class="services-pill">Channel Management</span><span class="services-pill">Partnerships</span><span class="services-pill">Event Planning</span><span class="services-pill">On-Site Coverage</span><span class="services-pill">Creator Collaborations</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num">300+</span><span class="lab">Brands highlighted</span></div>
+          <div class="case-stat"><span class="num">80K+</span><span class="lab">Channel followers</span></div>
+          <div class="case-stat"><span class="num">$65K</span><span class="lab">Grants directed</span></div>
+          <div class="case-stat"><span class="num">20+</span><span class="lab">Events nationwide</span></div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="avantika-zcon.mp4">
+            <video autoplay muted loop playsinline><source src="avantika-zcon.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">97K Views</span></div><div class="tile-bottom">Avantika Vandanapu @ ZCON</div></div>
+          </div>
+          <div class="video-tile" data-video="casetify-complexcon.mp4">
+            <video autoplay muted loop playsinline><source src="casetify-complexcon.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span>On-site</span><span class="tile-views"></span></div><div class="tile-bottom">Casetify @ ComplexCon</div></div>
+          </div>
+          <div class="video-tile" data-video="gentle-monster.mp4">
+            <video autoplay muted loop playsinline><source src="gentle-monster.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">59.8K Views</span></div><div class="tile-bottom">Press Preview with Gentle Monster for new Veggie Collection</div></div>
+          </div>
+          <div class="video-tile" data-video="culinary-monster.mp4">
+            <video autoplay muted loop playsinline><source src="culinary-monster.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">416K Views</span></div><div class="tile-bottom">Culinary Monster: Chef Lee Restaurant Opening</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Meta -->
+    <article class="case-study" id="meta">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Digital Marketing · Instagram · 2025</span>
+            <h2 class="case-name">Meta</h2>
+            <p class="case-subtitle">Marketing for @instagramforbusiness (20M+) &amp; @metaprosper (290K+)</p>
+          </div>
+          <div class="case-body">
+            <p>Managed Meta's 20M+ follower flagship business account (@instagramforbusiness) and DEI account (@metaprosper). From content strategy, production, and copywriting to end-to-end creator campaigns, led initiatives that resulted in the channel's highest-performing creator collaboration and increased reach by 600% and engagement by 300% year over year.</p>
+            <p>With reach and engagement as primary KPIs, led performance reporting and advised stakeholders and cross-functional teams on content strategy and optimization.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Content Strategy</span><span class="services-pill">Production</span><span class="services-pill">Copywriting</span><span class="services-pill">Creator Campaigns</span><span class="services-pill">Channel Management</span><span class="services-pill">Performance Reporting</span><span class="services-pill">Cross-Functional Advisory</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num">20M+</span><span class="lab">Followers managed</span></div>
+          <div class="case-stat"><span class="num">600%</span><span class="lab">Reach YoY</span></div>
+          <div class="case-stat"><span class="num">300%</span><span class="lab">Engagement YoY</span></div>
+          <div class="case-stat"><span class="num">12.4M</span><span class="lab">Top video views</span></div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8731c34ee01f12204b030_Rinasvoyage_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span class="tile-badge">Channel Record</span><span class="tile-views">12.4M Views</span></div><div class="tile-bottom">@rinasvoyage rings in the new year with Ray Ban Meta</div></div>
+          </div>
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b873c12c7f2659ca1d9855_COTE_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span class="tile-badge">Best of Month</span><span class="tile-views">2.9M Views</span></div><div class="tile-bottom">Ray Ban Meta with Michelin-star founder @simonkimnyc</div></div>
+          </div>
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b872dcdd9f7fd1b5c8af4a_Kpop%20BTS_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b872dcdd9f7fd1b5c8af4a_Kpop%20BTS_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b872dcdd9f7fd1b5c8af4a_Kpop%20BTS_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">2.1M Views</span></div><div class="tile-bottom">Day in the life of a K-Pop artist with Meta</div></div>
+          </div>
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8746843cfd96ef3a19130_jooshica_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8746843cfd96ef3a19130_jooshica_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8746843cfd96ef3a19130_jooshica_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">1.3M Views</span></div><div class="tile-bottom">Celebrating the Year of the Fire Horse with @jooshica</div></div>
+          </div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="meta-laurdiy.mp4">
+            <video autoplay muted loop playsinline><source src="meta-laurdiy.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">333K Views</span></div><div class="tile-bottom">Business spotlight with @laurdiy's dog brand</div></div>
+          </div>
+          <div class="video-tile" data-video="meta-inspiring.mp4">
+            <video autoplay muted loop playsinline><source src="meta-inspiring.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span>@instagramforbusiness</span></div><div class="tile-bottom">Inspiring business owners to create</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Yellow Chair Collective -->
+    <article class="case-study" id="yellow-chair">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Digital Marketing · Multi-channel · 2024–2025</span>
+            <h2 class="case-name">Yellow Chair Collective</h2>
+            <p class="case-subtitle">Mental health &amp; wellness content for non-profit organization and co-founders</p>
+          </div>
+          <div class="case-body">
+            <p>Collaborated with the internal marketing team to develop content for Instagram and TikTok, supporting the brand's organic and paid social strategy. Led the creative process from concept and production through editing and delivery, producing the brand's highest-performing Instagram Reel, TikTok, and top-performing ad to date.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Strategy</span><span class="services-pill">Content Creation</span><span class="services-pill">Channel Management</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num">687K</span><span class="lab">Top ad views</span></div>
+          <div class="case-stat"><span class="num">#1</span><span class="lab">All-time IG Reel</span></div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="yellow-chair.mp4">
+            <video autoplay muted loop playsinline><source src="yellow-chair.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span class="tile-badge">Top Ad</span><span class="tile-views">687K Views</span></div><div class="tile-bottom">Yellow Chair Collective</div></div>
+          </div>
+          <div class="video-tile" data-video="ycc-studio-session.mp4">
+            <video autoplay muted loop playsinline><source src="ycc-studio-session.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span>Co-founders</span></div><div class="tile-bottom">Studio session with Linda and Soo Jin</div></div>
+          </div>
+          <div class="video-tile" data-video="ycc-mothers-day.mp4">
+            <video autoplay muted loop playsinline><source src="ycc-mothers-day.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span>Tribute</span></div><div class="tile-bottom">Mother's Day tribute</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. APIA Scholars -->
+    <article class="case-study" id="apia">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Digital Marketing · Instagram · 2022–2025</span>
+            <h2 class="case-name">APIA Scholars</h2>
+            <p class="case-subtitle">Nonprofit channel &amp; fundraising campaigns</p>
+          </div>
+          <div class="case-body">
+            <p>APIA Scholars is the nation's largest nonprofit dedicated to providing scholarships for Asian American, Native Hawaiian, and Pacific Islander students. Supported the organization's Instagram through content creation, editing, and event coverage, including annual gala coverage in Los Angeles, scholarship recipient storytelling, and fundraising campaigns with partners such as Macy's, Target, and Golden TV.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Content Creation</span><span class="services-pill">Editing</span><span class="services-pill">Partnership Campaigns</span><span class="services-pill">Event Coverage</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num">174</span><span class="lab">Assets delivered</span></div>
+          <div class="case-stat"><span class="num">Macy's, Target</span><span class="lab">Fundraising campaigns assisted</span></div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87b54c950f2446aad7839_APIA%20Scholars%20Gala_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span>On-site</span></div><div class="tile-bottom">Annual gala in LA</div></div>
+          </div>
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8783aca2f1d541d8c7f29_Brian%20Zhang_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8783aca2f1d541d8c7f29_Brian%20Zhang_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8783aca2f1d541d8c7f29_Brian%20Zhang_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom">Brian Zhang campaign</div></div>
+          </div>
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8817957443bcffc324dcd_APIA%20Scholars%20-%20Josh%20Tran_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8817957443bcffc324dcd_APIA%20Scholars%20-%20Josh%20Tran_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b8817957443bcffc324dcd_APIA%20Scholars%20-%20Josh%20Tran_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom">Josh Tran, recipient spotlight</div></div>
+          </div>
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87c563dbcf7a121c5ba2c_APIA%20Scholars%20-%20Golden%20TV_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87c563dbcf7a121c5ba2c_APIA%20Scholars%20-%20Golden%20TV_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b87c563dbcf7a121c5ba2c_APIA%20Scholars%20-%20Golden%20TV_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom">Golden TV partnership</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. Covry Eyewear -->
+    <article class="case-study" id="covry">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Digital Marketing · TikTok · 2021–2025</span>
+            <h2 class="case-name">Covry Eyewear</h2>
+            <p class="case-subtitle">TikTok channel builder, the "Headshake Test"</p>
+          </div>
+          <div class="case-body">
+            <p>Covry Eyewear designs premium sunglasses for people with low nose bridges, a fit issue overlooked by most eyewear brands. Built the brand's TikTok presence from the ground up, producing 332 short-form videos over four years.</p>
+            <p>One standout concept, the "Headshake Test," became the brand's signature creative and most effective paid ad asset, using a simple visual demonstration to show how Covry's frames stay put while others slip.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Channel Management</span><span class="services-pill">Content Creation</span><span class="services-pill">Concept Development</span><span class="services-pill">Ad Asset Production</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num">24.7M+</span><span class="lab">Total views</span></div>
+          <div class="case-stat"><span class="num">74K</span><span class="lab">Avg views per post</span></div>
+          <div class="case-stat"><span class="num">332</span><span class="lab">Posts delivered</span></div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3c57210db702f19628e_51_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">3.2M Views</span></div><div class="tile-bottom">Why you need Covry's</div></div>
+          </div>
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3afcf9bf23e163669d0_52_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3afcf9bf23e163669d0_52_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3afcf9bf23e163669d0_52_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">1.2M Views</span></div><div class="tile-bottom">Savable carousel recs</div></div>
+          </div>
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5cbc1b97f1144b3a0962b_50_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">883K Views</span></div><div class="tile-bottom">The Headshake Test</div></div>
+          </div>
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3bcaea2ce28238ecb97_48_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3bcaea2ce28238ecb97_48_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5d3bcaea2ce28238ecb97_48_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">605K Views</span></div><div class="tile-bottom">Founder recommendations</div></div>
+          </div>
+          <div class="video-tile" data-video="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5c9d7de7aa46cfd6e2ff0_Covry%20Video%20Asset_mp4.mp4">
+            <video autoplay muted loop playsinline poster="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5c9d7de7aa46cfd6e2ff0_Covry%20Video%20Asset_poster.0000000.jpg"><source src="https://cdn.prod.website-files.com/67d37689bc7a183d7f66f3cb/69b5c9d7de7aa46cfd6e2ff0_Covry%20Video%20Asset_mp4.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">560K Views</span></div><div class="tile-bottom">First delivery</div></div>
+          </div>
+        </div>
+        <div class="case-quote">
+          <p>"An absolute game-changer for our TikTok growth strategy."</p>
+          <span class="attr">Covry Eyewear</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6. Jilly Bing -->
+    <article class="case-study" id="jilly-bing">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Digital Marketing · Multi-channel · 2024</span>
+            <h2 class="case-name">Jilly Bing</h2>
+            <p class="case-subtitle">Founder-led brand content</p>
+          </div>
+          <div class="case-body">
+            <p>Partnered with the brand during its early social media growth, developing content strategy and establishing creative best practices across Instagram and TikTok. Collaborated closely with the internal team, providing hands-on guidance on content creation, editing, and platform execution.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Consulting</span><span class="services-pill">Founder Content</span><span class="services-pill">Content Creation</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="jilly-1.mp4">
+            <video autoplay muted loop playsinline><source src="jilly-1.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom">Jilly Bing</div></div>
+          </div>
+          <div class="video-tile" data-video="jilly-2.mp4">
+            <video autoplay muted loop playsinline><source src="jilly-2.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom">Jilly Bing</div></div>
+          </div>
+          <div class="image-tile" data-image="jilly-3a.jpg"><img src="jilly-3a.jpg" alt="Jilly Bing"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom">Jilly Bing</div></div></div>
+          <div class="image-tile" data-image="jilly-3b.jpg"><img src="jilly-3b.jpg" alt="Jilly Bing"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom">Jilly Bing</div></div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 7. Orcé Cosmetics -->
+    <article class="case-study" id="orce-digital">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Digital Marketing · Instagram · 2023–2024</span>
+            <h2 class="case-name">Orcé Cosmetics</h2>
+            <p class="case-subtitle">Water Magnet Lip Tint launch campaign</p>
+          </div>
+          <div class="case-body">
+            <p>Supported the launch of ORCÉ Cosmetics' first lip product, the Water Magnet Serum-Infused Lip Tint, through content creation, influencer seeding, and event programming. Produced Instagram and TikTok content, secured community partners to elevate the guest experience, and collaborated with Nam Coffee on custom beverages that reflected the product's aesthetic, extending the launch through social campaigns with event partners.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Content Creation</span><span class="services-pill">Launch Campaign</span><span class="services-pill">Influencer Seeding</span><span class="services-pill">Event Strategy &amp; Programming</span><span class="services-pill">Ad Assets</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="orce-cosmetics-new.mp4">
+            <video autoplay muted loop playsinline><source src="orce-cosmetics-new.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom"></div></div>
+          </div>
+          <div class="video-tile" data-video="orce-3.mp4">
+            <video autoplay muted loop playsinline><source src="orce-3.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom"></div></div>
+          </div>
+          <div class="video-tile" data-video="orce-5.mp4">
+            <video autoplay muted loop playsinline><source src="orce-5.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom"></div></div>
+          </div>
+        </div>
+        <div class="case-videos case-videos--landscape">
+          <div class="image-tile" data-image="orce-4.jpg"><img src="orce-4.jpg" alt="Orcé Lip Tint Launch Event"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"></div><div class="tile-bottom">Lip Tint Launch Event</div></div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 8. Okko -->
+    <article class="case-study" id="okko">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Digital Marketing · Multi-channel · 2023</span>
+            <h2 class="case-name">okko</h2>
+            <p class="case-subtitle">First foray into TikTok!</p>
+          </div>
+          <div class="case-body">
+            <p>Partnered with OKKO to develop its TikTok strategy through content consulting, creative direction, and hands-on asset creation. Worked closely with the internal team to refine content concepts and execution, earning feedback that our "secret sauce is no joke."</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">TikTok Strategy</span><span class="services-pill">Content Consulting</span><span class="services-pill">Creative Direction</span><span class="services-pill">Asset Creation</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="okko-1.mp4">
+            <video autoplay muted loop playsinline><source src="okko-1.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">40.3K Views</span></div><div class="tile-bottom">okko</div></div>
+          </div>
+          <div class="video-tile" data-video="okko-2.mp4">
+            <video autoplay muted loop playsinline><source src="okko-2.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span></span><span class="tile-views">10K Views</span></div><div class="tile-bottom">okko</div></div>
+          </div>
+        </div>
+        <div class="case-quote">
+          <p>"Secret sauce is no joke."</p>
+          <span class="attr">okko</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 9. Tend Prenatal -->
+    <article class="case-study" id="tend-prenatal">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Digital Marketing · Consulting · Ongoing</span>
+            <h2 class="case-name">Tend Prenatal</h2>
+            <p class="case-subtitle">Content strategy &amp; digital presence consulting</p>
+          </div>
+          <div class="case-body">
+            <p>Consulted on the brand's content strategy and overall digital presence, helping establish clear priorities and a cohesive direction for its next stage of growth. Provided strategic guidance on brand positioning, content pillars, and creative execution to refresh and strengthen the brand.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Consulting</span>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ============ EVENT STRATEGY ============ -->
+  <div class="tab-panel" data-panel="event">
+
+    <!-- 1. Elorea (2026) -->
+    <article class="case-study" id="elorea">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Event Strategy &amp; Programming · 2026</span>
+            <h2 class="case-name">Elorea</h2>
+            <p class="case-subtitle">Seoul flagship launch</p>
+          </div>
+          <div class="case-body">
+            <p>Supported the launch of the brand's first Seoul flagship through event strategy, guest curation, and panel programming. Within one week, secured a high-quality guest list and curated a panel featuring a celebrity chef the brand had been pursuing a partnership with, helping bring its launch vision to life.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Event Strategy</span><span class="services-pill">Guest Curation</span><span class="services-pill">Panel Programming</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-videos case-videos--landscape">
+          <div class="image-tile" data-image="elorea-1.jpg"><img src="elorea-1.jpg" alt="Elorea Seoul flagship"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>Seoul flagship</span></div><div class="tile-bottom">Elorea launch</div></div></div>
+          <div class="image-tile" data-image="elorea-2.jpg"><img src="elorea-2.jpg" alt="Elorea Seoul flagship"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>Seoul flagship</span></div><div class="tile-bottom">Elorea launch</div></div></div>
+          <div class="image-tile" data-image="elorea-3.jpg"><img src="elorea-3.jpg" alt="Elorea Seoul flagship"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>Seoul flagship</span></div><div class="tile-bottom">Elorea launch</div></div></div>
+          <div class="image-tile" data-image="elorea-4.jpg"><img src="elorea-4.jpg" alt="Elorea Seoul flagship"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>Seoul flagship</span></div><div class="tile-bottom">Elorea launch</div></div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. Omnicom (2025) -->
+    <article class="case-study" id="omnicom">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Event Strategy &amp; Programming · 2025</span>
+            <h2 class="case-name">Omnicom</h2>
+            <p class="case-subtitle">AAPI Heritage Month employee marketplace</p>
+          </div>
+          <div class="case-body">
+            <p>Led the vendor experience for an Asian American and Pacific Islander Heritage Month celebration, managing sourcing, outreach, and day-of logistics to deliver a curated marketplace for the company's employees.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Vendor Experience</span><span class="services-pill">Sourcing &amp; Outreach</span><span class="services-pill">Day-of Logistics</span><span class="services-pill">Marketplace Curation</span>
+            </div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. Orcé Cosmetics (2024) -->
+    <article class="case-study" id="orce-event">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Event Strategy &amp; Programming · 2024</span>
+            <h2 class="case-name">Orcé Cosmetics</h2>
+            <p class="case-subtitle">Water Magnet Lip Tint launch event</p>
+          </div>
+          <div class="case-body">
+            <p>Supported the launch of ORCÉ Cosmetics' first lip product, the Water Magnet Serum-Infused Lip Tint, through event programming and strategic partnerships. Curated community partners, secured Nam Coffee to create custom beverages inspired by the product, and helped deliver a launch experience that extended into collaborative social campaigns.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Event Programming</span><span class="services-pill">Strategic Partnerships</span><span class="services-pill">Community Partner Curation</span><span class="services-pill">Launch Execution</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-videos case-videos--landscape">
+          <div class="image-tile" data-image="orce-launch-1.jpg"><img src="orce-launch-1.jpg" alt="Orcé launch"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>Launch</span></div><div class="tile-bottom">Orcé Cosmetics</div></div></div>
+          <div class="image-tile" data-image="orce-launch-2.jpg"><img src="orce-launch-2.jpg" alt="Orcé launch"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>Launch</span></div><div class="tile-bottom">Orcé Cosmetics</div></div></div>
+          <div class="image-tile" data-image="orce-launch-3.jpg"><img src="orce-launch-3.jpg" alt="Orcé launch"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>Launch</span></div><div class="tile-bottom">Orcé Cosmetics</div></div></div>
+          <div class="image-tile" data-image="orce-launch-4.jpg"><img src="orce-launch-4.jpg" alt="Orcé launch"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>Launch</span></div><div class="tile-bottom">Orcé Cosmetics</div></div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. City of Los Angeles (2024) -->
+    <article class="case-study" id="city-la">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Event Strategy &amp; Programming · 2024</span>
+            <h2 class="case-name">City of Los Angeles</h2>
+            <p class="case-subtitle">Koreatown Plaza vendor marketplace</p>
+          </div>
+          <div class="case-body">
+            <p>Partnered with the City of Los Angeles and Dear Asian Americans to curate vendors for a marketplace celebrating Asian-owned businesses at the iconic Koreatown Plaza. Led the vendor experience from sourcing and outreach through day-of logistics, providing end-to-end support and overseeing all vendor operations.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Vendor Curation</span><span class="services-pill">Sourcing &amp; Outreach</span><span class="services-pill">Day-of Logistics</span><span class="services-pill">Vendor Operations</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-quote">
+          <p>"The curation of vendors and the vibe was second to none. I've never imagined a vacant space could instantly turn into a place the team created. Full of energy and excitement."</p>
+          <span class="attr">Koreatown Plaza</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. Toyota (2023) -->
+    <article class="case-study" id="toyota">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Event Strategy &amp; Programming · 2023</span>
+            <h2 class="case-name">Toyota</h2>
+            <p class="case-subtitle">SXSW 1,000+ attendee event with Dear Asian Americans</p>
+          </div>
+          <div class="case-body">
+            <p>Led vendor curation and logistics for a 1,000+ attendee event during SXSW for a Dear Asian Americans podcast event, bringing together Austin-based small businesses alongside national brand partners, including Panda Express. Managed the vendor program end-to-end, from sourcing and outreach through on-site execution.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Vendor Curation</span><span class="services-pill">Vendor Logistics</span><span class="services-pill">Sourcing &amp; Outreach</span><span class="services-pill">On-Site Execution</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num">1,000+</span><span class="lab">Attendees</span></div>
+          <div class="case-stat"><span class="num">SXSW</span><span class="lab">Austin, TX</span></div>
+        </div>
+        <div class="case-videos case-videos--landscape">
+          <div class="image-tile" data-image="sxsw-1.jpg"><img src="sxsw-1.jpg" alt="Toyota × Dear Asian Americans at SXSW"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>SXSW</span></div><div class="tile-bottom">Toyota × Dear Asian Americans</div></div></div>
+          <div class="image-tile" data-image="sxsw-2.jpg"><img src="sxsw-2.jpg" alt="Toyota × Dear Asian Americans at SXSW"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>SXSW</span></div><div class="tile-bottom">Toyota × Dear Asian Americans</div></div></div>
+          <div class="image-tile" data-image="sxsw-3.jpg"><img src="sxsw-3.jpg" alt="Toyota × Dear Asian Americans at SXSW"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>SXSW</span></div><div class="tile-bottom">Toyota × Dear Asian Americans</div></div></div>
+          <div class="image-tile" data-image="sxsw-4.jpg"><img src="sxsw-4.jpg" alt="Toyota × Dear Asian Americans at SXSW"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>SXSW</span></div><div class="tile-bottom">Toyota × Dear Asian Americans</div></div></div>
+          <div class="image-tile" data-image="sxsw-5.jpg"><img src="sxsw-5.jpg" alt="Toyota × Dear Asian Americans at SXSW"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>SXSW</span></div><div class="tile-bottom">Toyota × Dear Asian Americans</div></div></div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <!-- ============ INFLUENCER ============ -->
+  <div class="tab-panel" data-panel="influencer">
+
+    <!-- 1. REI (2026) -->
+    <article class="case-study" id="rei">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Influencer · TikTok / Instagram · 2026</span>
+            <h2 class="case-name">REI</h2>
+            <p class="case-subtitle">Korean camping food with @davidsjeong</p>
+          </div>
+          <div class="case-body">
+            <p>For REI's #AsianFounded campaign, we developed and produced a Korean camping food piece with creator @davidsjeong. The video hit 134K views on the creator's channel, and REI reposted it on their own channel, garnering an additional 63.3K views.</p>
+            <p>A brand-side repost signals content quality that the retailer felt was worth putting in front of their much larger audience, without paid amplification.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Creator Partnership</span><span class="services-pill">Content Production</span><span class="services-pill">Campaign Development</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num">134K</span><span class="lab">Creator views</span></div>
+          <div class="case-stat"><span class="num">63.3K</span><span class="lab">REI repost views</span></div>
+          <div class="case-stat"><span class="num">Yes</span><span class="lab">Brand repost secured</span></div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="rei-korean-camping.mp4">
+            <video autoplay muted loop playsinline><source src="rei-korean-camping.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span>@davidsjeong</span><span class="tile-views">134K + 63K Views</span></div><div class="tile-bottom">Korean camping food with REI</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 2. McDonald's × BTS (2026) -->
+    <article class="case-study" id="mcd-bts">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Influencer · Multi-channel · 2026</span>
+            <h2 class="case-name">McDonald's × BTS</h2>
+            <p class="case-subtitle">Coming soon, 2026</p>
+          </div>
+          <div class="case-body">
+            <p>Project details coming soon, 2026. Ask Esther for the latest.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Creator Partnerships</span><span class="services-pill">Talent Coordination</span><span class="services-pill">Content Production</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-videos">
+          <div class="placeholder-tile"><div class="placeholder-tile-inner"><div class="placeholder-tile-icon">▸</div>Coming Soon<br>2026</div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 3. YouTube (2024, 2025) -->
+    <article class="case-study" id="youtube">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Influencer · YouTube · 2024, 2025</span>
+            <h2 class="case-name">YouTube</h2>
+            <p class="case-subtitle">API Creator Galas, gift bag partnerships</p>
+          </div>
+          <div class="case-body">
+            <p>Partnered with YouTube to support its 2024 and 2025 API Creator Galas, curating in-kind brand partnerships for creator gift bags. Secured products from leading brands to elevate the attendee experience and deliver premium gift bags for featured creators.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">In-Kind Partnerships</span><span class="services-pill">Brand Curation</span><span class="services-pill">Gift Bag Programming</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-videos case-videos--landscape">
+          <div class="image-tile" data-image="youtube-1.jpg"><img src="youtube-1.jpg" alt="YouTube API Creator Gala"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>API 2024</span></div><div class="tile-bottom">YouTube Creator Gala</div></div></div>
+          <div class="image-tile" data-image="youtube-2.jpg"><img src="youtube-2.jpg" alt="YouTube API Creator Gala"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>API 2024</span></div><div class="tile-bottom">YouTube Creator Gala</div></div></div>
+          <div class="image-tile" data-image="youtube-3.jpg"><img src="youtube-3.jpg" alt="YouTube API Creator Gala"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>API 2024</span></div><div class="tile-bottom">YouTube Creator Gala</div></div></div>
+          <div class="image-tile" data-image="youtube-4.jpg"><img src="youtube-4.jpg" alt="YouTube API Creator Gala"><div class="play-icon">↗</div><div class="tile-overlay"><div class="tile-top"><span>API 2024</span></div><div class="tile-bottom">YouTube Creator Gala</div></div></div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 4. Hero Cosmetics (2022) -->
+    <article class="case-study" id="hero-cosmetics">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Influencer · Multi-channel · 2022</span>
+            <h2 class="case-name">Hero Cosmetics</h2>
+            <p class="case-subtitle">Commissioned creator video with @asianfounded</p>
+          </div>
+          <div class="case-body">
+            <p>Commissioned video with @asianfounded to promote Hero Cosmetics' patches, leveraging the creator's community and voice to introduce the product to a highly-engaged audience.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Creator Partnership</span><span class="services-pill">Content Production</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="hero-cosmetics.mp4">
+            <video autoplay muted loop playsinline><source src="hero-cosmetics.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span>@asianfounded</span></div><div class="tile-bottom">Hero Cosmetics patches promo</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 5. NBC Comcast (2022) -->
+    <article class="case-study" id="nbc-comcast">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Influencer · Multi-channel · 2022</span>
+            <h2 class="case-name">NBC Comcast</h2>
+            <p class="case-subtitle">Founder grant promo with @asianfounded</p>
+          </div>
+          <div class="case-body">
+            <p>Commissioned video with @asianfounded to promote NBC Comcast's founder grant program and encourage applications. Two of the grant's eventual recipients applied after seeing the promo, driven directly by the campaign.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Creator Partnership</span><span class="services-pill">Content Production</span><span class="services-pill">Campaign Development</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num">2</span><span class="lab">Grant recipients from promo</span></div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="ugc-nbc-comcast.mp4">
+            <video autoplay muted loop playsinline><source src="ugc-nbc-comcast.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span>@asianfounded</span></div><div class="tile-bottom">NBC Comcast grant promo</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 6. Kaytran (2022) -->
+    <article class="case-study" id="kaytran">
+      <div class="wrap">
+        <div class="case-head">
+          <div>
+            <span class="case-meta">Influencer · Multi-channel · 2022</span>
+            <h2 class="case-name">Kaytran</h2>
+            <p class="case-subtitle">Eyewear promo with @asianfounded</p>
+          </div>
+          <div class="case-body">
+            <p>Video posted with creator @asianfounded to promote Kaytran eyewear. Drove measurable lift across sales, web sessions, and social traffic.</p>
+            <div class="services-provided"><span class="services-provided-label">Services</span><div class="services-provided-list">
+              <span class="services-pill">Creator Partnership</span><span class="services-pill">Content Production</span>
+            </div></div>
+          </div>
+        </div>
+        <div class="case-stats">
+          <div class="case-stat"><span class="num">514%</span><span class="lab">Sales increase</span></div>
+          <div class="case-stat"><span class="num">434%</span><span class="lab">Web sessions</span></div>
+          <div class="case-stat"><span class="num">4×</span><span class="lab">Social traffic</span></div>
+        </div>
+        <div class="case-videos">
+          <div class="video-tile" data-video="ugc-kaytran.mp4">
+            <video autoplay muted loop playsinline><source src="ugc-kaytran.mp4" type="video/mp4"></video>
+            <div class="play-icon">▸</div>
+            <div class="tile-overlay"><div class="tile-top"><span>@asianfounded</span></div><div class="tile-bottom">Kaytran eyewear promo</div></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+  </div>
+
+  <footer class="work-footer">
+    <div class="wrap">
+      <h2>Let's build something together!</h2>
+      <a class="contact" href="mailto:esther@leelabs.agency">esther@leelabs.agency →</a>
+    </div>
+  </footer>
+
+</main>
+
+<div class="lightbox" id="lightbox">
+  <span class="lightbox-close">[ esc · close ]</span>
+  <video id="lightbox-video" controls style="display:none;"></video>
+  <img id="lightbox-image" style="display:none;" alt="">
+</div>
+
+<script>
+  const PASSWORD = "leelabs2026";
+  const gate = document.getElementById('gate');
+  const gateForm = document.getElementById('gate-form');
+  const gateInput = document.getElementById('gate-input');
+  const gateError = document.getElementById('gate-error');
+  const workPage = document.getElementById('work-page');
+  const pageNav = document.getElementById('page-nav');
+  const serviceTabs = document.getElementById('service-tabs');
+
+  function unlock() {
+    gate.classList.add('hidden');
+    workPage.classList.add('revealed');
+    pageNav.style.display = 'block';
+    serviceTabs.style.display = 'block';
+    sessionStorage.setItem('lee-labs-work-unlocked', '1');
+    document.querySelectorAll('.tab-panel.active video').forEach(v => v.play().catch(()=>{}));
+  }
+  function checkPassword(pw) { return pw.trim().toLowerCase() === PASSWORD.toLowerCase(); }
+  if (sessionStorage.getItem('lee-labs-work-unlocked') === '1') { unlock(); }
+
+  gateForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (checkPassword(gateInput.value)) { gateError.textContent = ''; unlock(); }
+    else {
+      gateError.textContent = 'Incorrect access code';
+      gateInput.classList.add('error'); gateInput.value = '';
+      setTimeout(() => gateInput.classList.remove('error'), 1200);
+    }
+  });
+  document.getElementById('logout').addEventListener('click', (e) => {
+    e.preventDefault();
+    sessionStorage.removeItem('lee-labs-work-unlocked');
+    location.reload();
+  });
+
+  const tabs = document.querySelectorAll('.service-tab');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = tab.getAttribute('data-tab');
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      panels.forEach(p => { p.classList.toggle('active', p.getAttribute('data-panel') === target); });
+      document.querySelectorAll(`.tab-panel[data-panel="${target}"] video`).forEach(v => v.play().catch(()=>{}));
+      window.scrollTo({ top: serviceTabs.offsetTop - 60, behavior: 'smooth' });
+    });
+  });
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxVideo = document.getElementById('lightbox-video');
+  const lightboxImage = document.getElementById('lightbox-image');
+  function openVideo(src) {
+    if (!src) return;
+    if (/tiktok\.com|instagram\.com|youtube\.com|youtu\.be/i.test(src)) { window.open(src, '_blank', 'noopener'); return; }
+    lightboxImage.style.display = 'none';
+    lightboxVideo.style.display = 'block';
+    lightboxVideo.src = src;
+    lightbox.classList.add('active');
+    lightboxVideo.play();
+  }
+  function openImage(src) {
+    if (!src) return;
+    lightboxVideo.style.display = 'none';
+    lightboxImage.style.display = 'block';
+    lightboxImage.src = src;
+    lightbox.classList.add('active');
+  }
+  document.querySelectorAll('[data-video]').forEach(tile => {
+    tile.addEventListener('click', () => openVideo(tile.getAttribute('data-video')));
+  });
+  document.querySelectorAll('[data-image]').forEach(tile => {
+    tile.addEventListener('click', () => openImage(tile.getAttribute('data-image')));
+  });
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('active');
+    lightboxVideo.pause(); lightboxVideo.src = '';
+    lightboxImage.src = '';
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lightbox.click(); });
+</script>
+</body>
+</html>
