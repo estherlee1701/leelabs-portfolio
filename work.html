@@ -973,7 +973,11 @@
       tab.classList.add('active');
       panels.forEach(p => { p.classList.toggle('active', p.getAttribute('data-panel') === target); });
       document.querySelectorAll(`.tab-panel[data-panel="${target}"] video`).forEach(v => v.play().catch(()=>{}));
-      window.scrollTo({ top: serviceTabs.offsetTop - 60, behavior: 'smooth' });
+      const activePanel = document.querySelector(`.tab-panel[data-panel="${target}"]`);
+      const firstCase = activePanel && activePanel.querySelector('.case-study');
+      if (firstCase) {
+        firstCase.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   });
 
